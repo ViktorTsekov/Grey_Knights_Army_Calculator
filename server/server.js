@@ -88,7 +88,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 
     knex('users')
       .insert({
-        username: req.body.name,
+        name: req.body.name,
         password: hashedPassword,
         role: 'user'
       })
