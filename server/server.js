@@ -42,6 +42,10 @@ passport.deserializeUser((id, done) => {
     })
 })
 
+app.get('/api', (req, res) => {
+  res.json({message: "Hello World 123"})
+})
+
 app.get('/', checkAuthenticated, (req, res) => {
   console.log('User authenticated with username:', req.user.name)
   res.render('index.ejs')
