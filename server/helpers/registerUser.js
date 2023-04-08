@@ -14,6 +14,10 @@ const userNameIsAvailable = (username) => {
     })
 }
 
+const addNewUserToDb = (user) => {
+  return knex('users').insert(user)
+}
+
 const passwordIsSecure = (password) => {
   const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -33,4 +37,4 @@ const passwordIsSecure = (password) => {
   return containsUppercase && containsLowercase && containsSpecialCharacter && is8CharactersLong
 }
 
-module.exports = {userNameIsAvailable, passwordIsSecure}
+module.exports = {userNameIsAvailable, passwordIsSecure, addNewUserToDb}

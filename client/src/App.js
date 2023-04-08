@@ -1,18 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from 'react'
+import Login from './views/Login'
+import Register from './views/Register';
 
 function App() {
-  const [backendData, setBackendData] = useState({})
-
-  useEffect(() => {
-    fetch('/api')
-      .then(res => res.json())
-      .then(data => setBackendData(data))
-  }, [])
-
   return (
-    <div>
-      {backendData.message}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

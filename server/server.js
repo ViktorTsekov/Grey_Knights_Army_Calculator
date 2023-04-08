@@ -5,8 +5,6 @@ if(process.env.NODE_ENV !== 'production') {
 const express = require('express')
 const app = express()
 const bcrypt = require('bcrypt')
-const knexConfig = require('./db/knexfile.js')
-const knex = require('knex')(knexConfig.development)
 const passport = require('passport')
 const session = require('express-session')
 const methodOverride = require('method-override')
@@ -15,7 +13,9 @@ const LocalStrategy = require('passport-local').Strategy
 const registerUserHelper = require('./helpers/registerUser')
 const loginUserHelper = require('./helpers/loginUser.js')
 const authUser = require('./passportAuth.js')
+const User = require('./models/user.js')
 
+app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -42,10 +42,6 @@ passport.deserializeUser((id, done) => {
     })
 })
 
-app.get('/api', (req, res) => {
-  res.json({message: "Hello World 123"})
-})
-
 app.get('/', checkAuthenticated, (req, res) => {
   console.log('User authenticated with username:', req.user.name)
   res.render('index.ejs')
@@ -68,36 +64,32 @@ app.delete('/logout', checkAuthenticated, (req, res, next) => {
   })
 })
 
-app.get('/register', checkNotAuthenticated, (req, res) => {
-  res.render('register.ejs')
-})
-
 app.post('/register', checkNotAuthenticated, async (req, res) => {
   try {
     const userNameIsAvailable = await registerUserHelper.userNameIsAvailable(req.body.name)
 
     if(!registerUserHelper.passwordIsSecure(req.body.password)) {
-      throw 'Password not secure'
+      return res.status(400).json({message: 'Password is not secure enough, password should be at least 8 characters long and include a capital letter, a lowercase letter, a number and a special character'})
     }
 
     if(!userNameIsAvailable) {
-      throw 'Username not available'
+      return res.status(400).json({message: 'Username unavailable'})
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
+    const user = User
 
-    knex('users')
-      .insert({
-        name: req.body.name,
-        password: hashedPassword,
-        role: 'user'
-      })
+    user.name = req.body.name
+    user.password = hashedPassword
+    user.role = 'user'
+
+    registerUserHelper
+      .addNewUserToDb(user)
       .then(() => {
-        res.status(200).redirect('/login')
+        return res.status(200).json({message: 'User registered successfully'})
       })
   } catch(e) {
     console.error(e)
-    res.status(400).redirect('/register')
   }
 })
 
