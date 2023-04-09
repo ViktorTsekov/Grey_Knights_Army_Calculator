@@ -42,29 +42,19 @@ passport.deserializeUser((id, done) => {
     })
 })
 
-app.get('/', checkAuthenticated, (req, res) => {
-  console.log('User authenticated with username:', req.user.name)
-  res.render('index.ejs')
+app.post('/login',
+  passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
+  function(req, res) {
+    res.json({isAuthenticated: req.isAuthenticated()})
 })
 
-app.get('/login', checkNotAuthenticated, (req, res) => {
-  res.render('login.ejs')
-})
-
-app.post('/login', checkNotAuthenticated, passport.authenticate("local", {
-  failureRedirect: "/login",
-  successRedirect: "/"
-}))
-
-app.delete('/logout', checkAuthenticated, (req, res, next) => {
+app.get('/logout', (req, res, next) => {
   req.logout(function (err) {
     if (err) { return next(err) }
-    
-    res.redirect('/login')
   })
 })
 
-app.post('/register', checkNotAuthenticated, async (req, res) => {
+app.post('/register', async (req, res) => {
   try {
     const userNameIsAvailable = await registerUserHelper.userNameIsAvailable(req.body.name)
 
@@ -93,20 +83,26 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
   }
 })
 
-function checkAuthenticated(req, res, next) {
-  if(req.isAuthenticated()) {
-    return next()
-  }
+app.get('/retrieveCurrentUser', (req, res) => {
+  res.json({user: req.user})
+})
 
-  res.redirect('/login')
-}
+// function checkAuthenticated(req, res, next) {
+//   if(req.isAuthenticated()) {
+//     return next()
+//   }
 
-function checkNotAuthenticated(req, res, next) {
-  if(req.isAuthenticated()) {
-    return res.redirect('/')
-  }
+//   res.redirect('/login')
+// }
 
-  next()
-}
+// function checkNotAuthenticated(req, res, next) {
+//   console.log("auth:", req.isAuthenticated())
+
+//   if(req.isAuthenticated()) {
+//     return res.redirect('/')
+//   }
+
+//   next()
+// }
 
 app.listen(process.env.PORT, () => console.log('App listening on port:', process.env.PORT))

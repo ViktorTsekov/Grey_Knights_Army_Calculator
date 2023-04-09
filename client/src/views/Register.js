@@ -20,6 +20,7 @@ function Register() {
 
   const registerUser = () => {
     setStatusMessage({message: "", color: ""})
+    
     if(validateFields()) {
       if(password === retypePassword) {
         fetch('/register', {
