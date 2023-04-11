@@ -1,5 +1,9 @@
-import React, {useState} from 'react'
-import { useNavigate } from "react-router-dom";
+import React, {useState, useEffect} from 'react'
+import { useNavigate } from "react-router-dom"
+import LoginContainer from '../components/LoginContainer'
+import Button from '../components/Button'
+import InputField from '../components/InputField'
+import colors from '../static files/colors'
 
 function Login() {
   const [name, setName] = useState("")
@@ -8,52 +12,57 @@ function Login() {
 
   const navigate = useNavigate()
  
-  const loginUser = () => {
-    fetch('/login', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: name,
-        password: password
+  useEffect(() => {
+    fetch('/retrieveCurrentUser')
+      .then(res => res.json())
+      .then(data => {
+        if(data.user !== undefined) {
+          navigate("/")
+        }
       })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if(data.isAuthenticated == true) {
-        navigate("/")
-      }
-    })
-    .catch(e => {
-      setName("")
-      setPassword("")
-      setAlertMessage("Wrong username or password")
-    })
+  }, [])
+
+  const loginUser = () => {
+    if(name !== "" && password !== "") {
+      fetch('/login', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: name,
+          password: password
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.isAuthenticated === true) {
+          navigate("/")
+        }
+      })
+      .catch(e => {
+        setName("")
+        setPassword("")
+        setAlertMessage("Wrong username or password")
+      })
+    }
   }
 
   return (
-    <div>
+    <LoginContainer>
       <h1>Login</h1>
 
-      <p style={{color: "red"}}>{alertMessage}</p>
+      <p style={{color: `${colors.redAlert}`}}>{alertMessage}</p>
 
-      <div>
-        <label for="name">Name</label>
-        <input type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} />
-      </div>
+      <InputField name="name" label="Name" type="text" isRequired={true} updateValue={(val) => setName(val)} />
+      <InputField name="password" label="Password" type="password" isRequired={true} updateValue={(val) => setPassword(val)} />
 
-      <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} />
-      </div>
-
-      <button onClick={() => loginUser()}>Login</button>
+      <Button label="Login" onClick={() => loginUser()}/>
       
       <br />
 
       <a href="/register">Register</a>
-    </div>
+    </LoginContainer>
   )
 }
 

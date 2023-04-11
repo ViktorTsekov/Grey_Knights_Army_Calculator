@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { useNavigate } from "react-router-dom";
 
-function Index() {
+function App() {
   const [username, setUsername] = useState("")
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch('/retrieveCurrentUser')
+    fetch("/retrieveCurrentUser")
       .then(res => res.json())
       .then(data => {
         if(data.user === undefined) {
@@ -19,7 +19,7 @@ function Index() {
   }, [])
 
   const logOut = () => {
-    fetch('/logout')
+    fetch("/logout")
     navigate("/login")
   }
 
@@ -36,4 +36,4 @@ function Index() {
   )
 }
 
-export default Index
+export default App

@@ -1,4 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useNavigate } from "react-router-dom";
+import LoginContainer from '../components/LoginContainer'
+import InputField from '../components/InputField'
+import Button from '../components/Button'
+import colors from '../static files/colors'
 
 function Register() {
   const [name, setName] = useState("")
@@ -6,22 +11,26 @@ function Register() {
   const [retypePassword, setRetypePassword] = useState("")
   const [statusMessage, setStatusMessage] = useState({message: "", color: ""})
 
-  const [showNameWarning, setShowNameWarning] = useState(false)
-  const [showPasswordWarning, setShowPasswordWarning] = useState(false)
-  const [showRetypePasswordWarning, setShowRetypePasswordWarning] = useState(false)
+  const navigate = useNavigate()
 
-  const validateFields = () => {
-    name === "" ? setShowNameWarning(true) : setShowNameWarning(false)
-    password === "" ? setShowPasswordWarning(true) : setShowPasswordWarning(false)
-    retypePassword === "" ? setShowRetypePasswordWarning(true) : setShowRetypePasswordWarning(false)
+  useEffect(() => {
+    fetch('/retrieveCurrentUser')
+      .then(res => res.json())
+      .then(data => {
+        if(data.user !== undefined) {
+          navigate("/")
+        }
+      })
+  }, [])
 
+  const fieldsAreValid = () => {
     return name !== "" && password !== "" && retypePassword !== ""
   }
 
   const registerUser = () => {
     setStatusMessage({message: "", color: ""})
     
-    if(validateFields()) {
+    if(fieldsAreValid()) {
       if(password === retypePassword) {
         fetch('/register', {
           method: "POST",
@@ -43,57 +52,34 @@ function Register() {
           }
         })
         .then(data => {
-          setStatusMessage({message: data.message, color: "green"})
+          setStatusMessage({message: data.message, color: `${colors.greenAffirmation}`})
           setName("")
           setPassword("")
           setRetypePassword("")
         })
-        .catch(error => setStatusMessage({message: error, color: "red"}))
+        .catch(error => setStatusMessage({message: error, color: `${colors.redAlert}`}))
       } else {
-        setStatusMessage({message: "Passwords do not match", color: "red"})
+        setStatusMessage({message: "Passwords do not match", color: `${colors.redAlert}`})
       }
     } 
   }
 
   return (
-    <div>
+    <LoginContainer>
       <h1>Register</h1>
 
       <p style={{color: `${statusMessage.color}`}}>{statusMessage.message}</p>
       
-      {
-        showNameWarning &&
-          <p style={{color: "red"}}>Field is required</p>
-      }
-      <div>
-        <label for="name">Name</label>
-        <input type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} />
-      </div>
+      <InputField name="name" label="Name" type="text" isRequired={true} updateValue={(val) => setName(val)} />
+      <InputField name="password" label="Password" type="password" isRequired={true} updateValue={(val) => setPassword(val)} />
+      <InputField name="re-type password" label="Re-type password" type="password" isRequired={true} updateValue={(val) => setRetypePassword(val)} />
 
-      {
-        showPasswordWarning &&
-          <p style={{color: "red"}}>Field is required</p>
-      }
-      <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} value={password} />
-      </div>
-
-      {
-        showRetypePasswordWarning &&
-          <p style={{color: "red"}}>Field is required</p>
-      }
-      <div>
-        <label for="re-type password">Re-type password</label>
-        <input type="password" name="re-type password" onChange={(e) => setRetypePassword(e.target.value)} value={retypePassword} />
-      </div>
-
-      <button onClick={() => registerUser()}>Register</button>
+      <Button label="Register" onClick={() => registerUser()} />
       
       <br />
 
       <a href="/login">Login</a>
-    </div>
+    </LoginContainer>
   )
 }
 
