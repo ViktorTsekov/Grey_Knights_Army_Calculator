@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import LoginContainer from '../components/LoginContainer'
 import Button from '../components/Button'
 import InputField from '../components/InputField'
-import colors from '../static files/colors'
+import "../styles/Login.scss"
 
 function Login() {
   const [name, setName] = useState("")
@@ -50,9 +50,9 @@ function Login() {
 
   return (
     <LoginContainer>
-      <h1>Login</h1>
+      <h2>Login</h2>
 
-      <p style={{color: `${colors.redAlert}`}}>{alertMessage}</p>
+      <p className='alertMessage'>{alertMessage}</p>
 
       <InputField name="name" label="Name" type="text" isRequired={true} updateValue={(val) => setName(val)} />
       <InputField name="password" label="Password" type="password" isRequired={true} updateValue={(val) => setPassword(val)} />

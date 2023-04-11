@@ -1,0 +1,9 @@
+@import "../static_files/colors.scss";
+
+.positiveMessage {
+  color: $greenAffirmation;
+}
+
+.negativeMessage {
+  color: $redAlert;
+}

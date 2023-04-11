@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import LoginContainer from '../components/LoginContainer'
 import InputField from '../components/InputField'
 import Button from '../components/Button'
-import colors from '../static files/colors'
+import '../styles/Register.scss'
 
 function Register() {
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
   const [retypePassword, setRetypePassword] = useState("")
-  const [statusMessage, setStatusMessage] = useState({message: "", color: ""})
+  const [statusMessage, setStatusMessage] = useState({message: "", className: ""})
 
   const navigate = useNavigate()
 
@@ -28,7 +28,7 @@ function Register() {
   }
 
   const registerUser = () => {
-    setStatusMessage({message: "", color: ""})
+    setStatusMessage({message: "", className: ""})
     
     if(fieldsAreValid()) {
       if(password === retypePassword) {
@@ -52,23 +52,23 @@ function Register() {
           }
         })
         .then(data => {
-          setStatusMessage({message: data.message, color: `${colors.greenAffirmation}`})
+          setStatusMessage({message: data.message, className: "positiveMessage"})
           setName("")
           setPassword("")
           setRetypePassword("")
         })
-        .catch(error => setStatusMessage({message: error, color: `${colors.redAlert}`}))
+        .catch(error => setStatusMessage({message: error, className: "negativeMessage"}))
       } else {
-        setStatusMessage({message: "Passwords do not match", color: `${colors.redAlert}`})
+        setStatusMessage({message: "Passwords do not match", className: "negativeMessage"})
       }
     } 
   }
 
   return (
     <LoginContainer>
-      <h1>Register</h1>
+      <h2>Register</h2>
 
-      <p style={{color: `${statusMessage.color}`}}>{statusMessage.message}</p>
+      <p className={statusMessage.className}>{statusMessage.message}</p>
       
       <InputField name="name" label="Name" type="text" isRequired={true} updateValue={(val) => setName(val)} />
       <InputField name="password" label="Password" type="password" isRequired={true} updateValue={(val) => setPassword(val)} />

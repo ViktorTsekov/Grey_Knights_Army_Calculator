@@ -1,0 +1,14 @@
+@import "../static_files/colors.scss";
+
+.inputContainer {
+  margin: 8px;
+}
+
+.label {
+  margin-right: 6px;
+}
+
+.requiredMessage {
+  color: $redAlert;
+  margin-left: 6px;
+}

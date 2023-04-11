@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react"
+import "../styles/InputField.scss"
 
 function InputField(props) {
   const [value, setValue] = useState("")
   const [showRequiredWarning, setShowRequiredWarning] = useState(false)
 
-  const requiredMessage = "field is required"
+  const requiredMessage = "required"
 
   useEffect(() => {
     props.updateValue(value)
@@ -17,12 +18,12 @@ function InputField(props) {
   }, [value])
 
   return (
-    <div style={{margin: "8px"}}>
-      <label for={props.name} style={{marginRight: "6px"}}>{props.label}</label>
+    <div className="inputContainer">
+      <label for={props.name} className="label">{props.label}</label>
       <input type={props.type} name={props.name} onChange={(e) => setValue(e.target.value)} value={value} />
       {
         showRequiredWarning && props.isRequired &&
-          <span style={{color: "#b00202", marginLeft: "6px"}}>{requiredMessage}</span>
+          <span className="requiredMessage">{requiredMessage}</span>
       }
     </div>
   )

@@ -1,0 +1,7 @@
+@import "./static_files/colors.scss";
+@import "./static_files/fonts.scss";
+
+body {
+  background-color: $darkGreyBackground;
+  font-family: $georgia;
+}

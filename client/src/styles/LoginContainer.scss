@@ -1,0 +1,20 @@
+@import "../static_files/colors.scss";
+
+.container {
+  position: absolute;
+  top: 15%;
+  left: 30%;
+}
+
+.logo {
+  margin-bottom: 25px;
+}
+
+.loginContainer {
+  padding: 24px;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 525px;
+  background-color: $lightGreyBackground;
+  text-align: center;
+}
