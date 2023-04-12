@@ -14,3 +14,7 @@ button {
 button:hover {
   background-color: $lightGreyBackground !important;
 }
+
+button:active {
+  background-color: $darkGreyBackground !important;
+}
