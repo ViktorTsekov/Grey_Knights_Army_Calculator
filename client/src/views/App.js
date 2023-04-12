@@ -25,14 +25,20 @@ function App() {
 
   return (
     <div>
-      {
-        username !== "" &&
-          <div>
-            <h1>Hello {username}</h1>
-            <button onClick={() => logOut()}>Log Out</button>
-          </div>
-      }
+      <header>
+      
+      </header>
+      <div>
+        {
+          username !== "" &&
+            <div>
+              <h1>Hello {username}</h1>
+              <button onClick={() => logOut()}>Log Out</button>
+            </div>
+        }
+      </div>
     </div>
+
   )
 }
 

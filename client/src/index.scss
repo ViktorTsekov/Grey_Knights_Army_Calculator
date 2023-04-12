@@ -1,7 +1,18 @@
 @import "./static_files/colors.scss";
 @import "./static_files/fonts.scss";
 
-body {
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #232323;
+  height: 50px;
+  width: 100%;
+  float: left;
+}
+
+html body {
   background-color: $darkGreyBackground;
   font-family: $georgia;
+  padding-top: 65px;
 }
