@@ -5,6 +5,8 @@ import Button from '../components/Button'
 import InputField from '../components/InputField'
 import "../styles/Login.scss"
 
+const statusCodes = require('../static_files/statusCodes')
+
 function Login() {
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
@@ -43,7 +45,7 @@ function Login() {
       .catch(e => {
         setName("")
         setPassword("")
-        setAlertMessage("Wrong username or password")
+        setAlertMessage(statusCodes.wrongUsername)
       })
     }
   }

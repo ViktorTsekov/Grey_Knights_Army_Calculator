@@ -6,9 +6,19 @@
 
 .label {
   margin-right: 6px;
+  width: 160px;
+  display: inline-block;
+  text-align: right;
+}
+
+.inputField {
+  width: 160px;
 }
 
 .requiredMessage {
   color: $redAlert;
   margin-left: 6px;
+  width: 160px;
+  display: inline-block;
+  text-align: left;
 }

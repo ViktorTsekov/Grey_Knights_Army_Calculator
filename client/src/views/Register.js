@@ -5,6 +5,8 @@ import InputField from '../components/InputField'
 import Button from '../components/Button'
 import '../styles/Register.scss'
 
+const statusCodes = require('../static_files/statusCodes')
+
 function Register() {
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
@@ -59,7 +61,7 @@ function Register() {
         })
         .catch(error => setStatusMessage({message: error, className: "negativeMessage"}))
       } else {
-        setStatusMessage({message: "Passwords do not match", className: "negativeMessage"})
+        setStatusMessage({message: statusCodes.passwordMismatch, className: "negativeMessage"})
       }
     } 
   }

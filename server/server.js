@@ -14,6 +14,7 @@ const registerUserHelper = require('./helpers/registerUser')
 const loginUserHelper = require('./helpers/loginUser.js')
 const authUser = require('./passportAuth.js')
 const User = require('./models/user.js')
+const statusCodes = require('../client/src/static_files/statusCodes')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
@@ -59,11 +60,11 @@ app.post('/register', async (req, res) => {
     const userNameIsAvailable = await registerUserHelper.userNameIsAvailable(req.body.name)
 
     if(!registerUserHelper.passwordIsSecure(req.body.password)) {
-      return res.status(400).json({message: 'Password is not secure enough, password should be at least 8 characters long and include a capital letter, a lowercase letter, a number and a special character'})
+      return res.status(400).json({message: statusCodes.passwordUnsecure})
     }
 
     if(!userNameIsAvailable) {
-      return res.status(400).json({message: 'Username unavailable'})
+      return res.status(400).json({message: statusCodes.usernameUnavailable})
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10)
@@ -76,7 +77,7 @@ app.post('/register', async (req, res) => {
     registerUserHelper
       .addNewUserToDb(user)
       .then(() => {
-        return res.status(200).json({message: 'User registered successfully'})
+        return res.status(200).json({message: statusCodes.userRegistered})
       })
   } catch(e) {
     console.error(e)
@@ -86,23 +87,5 @@ app.post('/register', async (req, res) => {
 app.get('/retrieveCurrentUser', (req, res) => {
   res.json({user: req.user})
 })
-
-// function checkAuthenticated(req, res, next) {
-//   if(req.isAuthenticated()) {
-//     return next()
-//   }
-
-//   res.redirect('/login')
-// }
-
-// function checkNotAuthenticated(req, res, next) {
-//   console.log("auth:", req.isAuthenticated())
-
-//   if(req.isAuthenticated()) {
-//     return res.redirect('/')
-//   }
-
-//   next()
-// }
 
 app.listen(process.env.PORT, () => console.log('App listening on port:', process.env.PORT))
