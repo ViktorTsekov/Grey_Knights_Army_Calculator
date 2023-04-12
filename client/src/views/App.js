@@ -16,7 +16,7 @@ function App() {
           setUsername(data.user.name)
         }
       })
-  }, [])
+  }, [navigate])
 
   const logOut = () => {
     fetch("/logout")

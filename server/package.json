@@ -29,7 +29,7 @@
     "knex": "^2.4.2",
     "method-override": "^3.0.0",
     "mysql": "^2.18.1",
-    "passport": "^0.6.0",
+    "passport": "^0.5.3",
     "passport-local": "^1.0.0",
     "passport-session": "^1.0.2",
     "react": "^18.2.0",

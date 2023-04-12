@@ -23,15 +23,13 @@ function Register() {
           navigate("/")
         }
       })
-  }, [])
+  }, [navigate])
 
   const fieldsAreValid = () => {
     return name !== "" && password !== "" && retypePassword !== ""
   }
 
   const registerUser = () => {
-    setStatusMessage({message: "", className: ""})
-    
     if(fieldsAreValid()) {
       if(password === retypePassword) {
         fetch('/register', {
@@ -63,7 +61,9 @@ function Register() {
       } else {
         setStatusMessage({message: statusCodes.passwordMismatch, className: "negativeMessage"})
       }
-    } 
+    } else {
+      setStatusMessage({message: statusCodes.emptyFields, className: "negativeMessage"})
+    }
   }
 
   return (
@@ -72,9 +72,9 @@ function Register() {
 
       <p className={statusMessage.className}>{statusMessage.message}</p>
       
-      <InputField name="name" label="Name" type="text" isRequired={true} updateValue={(val) => setName(val)} />
-      <InputField name="password" label="Password" type="password" isRequired={true} updateValue={(val) => setPassword(val)} />
-      <InputField name="re-type password" label="Re-type password" type="password" isRequired={true} updateValue={(val) => setRetypePassword(val)} />
+      <InputField name="name" label="Name" type="text" isRequired={true} updateValue={(val) => setName(val)} value={name} />
+      <InputField name="password" label="Password" type="password" isRequired={true} updateValue={(val) => setPassword(val)} value={password} />
+      <InputField name="re-type password" label="Re-type password" type="password" isRequired={true} updateValue={(val) => setRetypePassword(val)} value={retypePassword} />
 
       <Button label="Register" onClick={() => registerUser()} />
       

@@ -51,7 +51,19 @@ app.post('/login',
 
 app.get('/logout', (req, res, next) => {
   req.logout(function (err) {
-    if (err) { return next(err) }
+    if (err) { 
+      console.error(err)
+      return next(err) 
+    }
+  })
+
+  req.session.destroy((err) => {
+    if(err) {
+      console.error(err)
+    }
+
+    res.clearCookie('connect.sid');
+    res.send('Logged out');
   })
 })
 

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import LoginContainer from '../components/LoginContainer'
 import Button from '../components/Button'
 import InputField from '../components/InputField'
@@ -13,7 +13,7 @@ function Login() {
   const [alertMessage, setAlertMessage] = useState("")
 
   const navigate = useNavigate()
- 
+
   useEffect(() => {
     fetch('/retrieveCurrentUser')
       .then(res => res.json())
@@ -22,7 +22,7 @@ function Login() {
           navigate("/")
         }
       })
-  }, [])
+  }, [navigate])
 
   const loginUser = () => {
     if(name !== "" && password !== "") {
@@ -36,17 +36,30 @@ function Login() {
           password: password
         })
       })
-      .then(res => res.json())
+      .then(res => {
+        if(res.status === 404) {
+          throw(statusCodes.wrongUsername)
+        }
+
+        return res.json()
+      })
       .then(data => {
         if(data.isAuthenticated === true) {
           navigate("/")
         }
       })
       .catch(e => {
+        if(typeof e === "string") {
+          setAlertMessage(e)
+        } else {
+          console.error(e)
+        }
+
         setName("")
         setPassword("")
-        setAlertMessage(statusCodes.wrongUsername)
       })
+    } else {
+      setAlertMessage(statusCodes.emptyFields)
     }
   }
 
@@ -56,8 +69,8 @@ function Login() {
 
       <p className='alertMessage'>{alertMessage}</p>
 
-      <InputField name="name" label="Name" type="text" isRequired={true} updateValue={(val) => setName(val)} />
-      <InputField name="password" label="Password" type="password" isRequired={true} updateValue={(val) => setPassword(val)} />
+      <InputField name="name" label="Name" type="text" isRequired={true} updateValue={(val) => setName(val)} value={name} />
+      <InputField name="password" label="Password" type="password" isRequired={true} updateValue={(val) => setPassword(val)} value={password} />
 
       <Button label="Login" onClick={() => loginUser()}/>
       
