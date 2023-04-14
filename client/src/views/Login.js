@@ -1,28 +1,21 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import LoginContainer from '../components/LoginContainer'
 import Button from '../components/Button'
 import InputField from '../components/InputField'
+import useNotAuthenticated from '../custom_hooks/useNotAuthenticated'
 import "../styles/Login.scss"
 
 const statusCodes = require('../static_files/statusCodes')
 
 function Login() {
+  useNotAuthenticated()
+
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
   const [alertMessage, setAlertMessage] = useState("")
 
   const navigate = useNavigate()
-
-  useEffect(() => {
-    fetch('/retrieveCurrentUser')
-      .then(res => res.json())
-      .then(data => {
-        if(data.user !== undefined) {
-          navigate("/")
-        }
-      })
-  }, [navigate])
 
   const loginUser = () => {
     if(name !== "" && password !== "") {
