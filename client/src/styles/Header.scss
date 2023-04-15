@@ -4,7 +4,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #232323;
+  background-color: #{$headerBackground};
   width: 100%;
   height: 90px;
 }
