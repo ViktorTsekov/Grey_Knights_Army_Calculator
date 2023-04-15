@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import InputField from '../components/InputField'
 import useNotAuthenticated from '../custom_hooks/useNotAuthenticated'
 import "../styles/Login.scss"
+import fieldsAreValid from '../helpers/fieldsAreValid';
 
 const statusCodes = require('../static_files/statusCodes')
 
@@ -18,7 +19,7 @@ function Login() {
   const navigate = useNavigate()
 
   const loginUser = () => {
-    if(name !== "" && password !== "") {
+    if(fieldsAreValid(name, password)) {
       fetch('/login', {
         method: 'POST',
         headers: {

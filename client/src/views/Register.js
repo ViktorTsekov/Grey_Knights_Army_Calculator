@@ -4,6 +4,7 @@ import InputField from '../components/InputField'
 import Button from '../components/Button'
 import useNotAuthenticated from '../custom_hooks/useNotAuthenticated'
 import '../styles/Register.scss'
+import fieldsAreValid from '../helpers/fieldsAreValid';
 
 const statusCodes = require('../static_files/statusCodes')
 
@@ -15,12 +16,8 @@ function Register() {
   const [retypePassword, setRetypePassword] = useState("")
   const [statusMessage, setStatusMessage] = useState({message: "", className: ""})
 
-  const fieldsAreValid = () => {
-    return name !== "" && password !== "" && retypePassword !== ""
-  }
-
   const registerUser = () => {
-    if(fieldsAreValid()) {
+    if(fieldsAreValid(name, password, retypePassword)) {
       if(password === retypePassword) {
         fetch('/register', {
           method: "POST",
