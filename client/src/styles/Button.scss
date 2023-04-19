@@ -8,11 +8,22 @@ button {
   border-radius: 8px;
   cursor: pointer;
   color: $white;
+}
+
+.default {
   background-color: $darkGreyBackground;
 }
 
-button:hover {
+.default:hover {
   background-color: $lightGreyBackground !important;
+}
+
+.alertButton {
+  background-color: $redAlert;
+}
+
+.alertButton:hover {
+  background-color: $redAlertHover;
 }
 
 button:active {

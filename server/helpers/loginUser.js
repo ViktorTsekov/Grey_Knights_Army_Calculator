@@ -6,7 +6,7 @@ const findUserByName = (username) => {
     .select('*')
     .where({name: username})
     .then((result) => {
-      return result
+      return result.filter(user => user.is_deleted === 0)
     })
 }
 
@@ -15,7 +15,7 @@ const findUserById = (id) => {
     .select('*')
     .where({id: id})
     .then((result) => {
-      return result
+      return result.filter(user => user.is_deleted === 0)
     })
 }
 

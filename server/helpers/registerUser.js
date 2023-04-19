@@ -6,10 +6,18 @@ const userNameIsAvailable = (username) => {
     .select('*')
     .where({name: username})
     .then((result) => {
-      if(result[0] === undefined) {
+      if(result.length === 0) {
         return true
       } else {
-        return false
+        let isAvailable = true
+
+        result.forEach((user) => {
+          if(user.is_deleted === 0) {
+            isAvailable = false
+          }
+        })
+
+        return isAvailable
       }
     })
 }

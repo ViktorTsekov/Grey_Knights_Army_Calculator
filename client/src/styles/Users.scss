@@ -1,0 +1,9 @@
+@import "../static_files/colors.scss";
+
+.statusMessage {
+  color: #{$greenAffirmation};
+}
+
+.usersContainer {
+  margin: 60px;
+}

@@ -6,4 +6,6 @@ module.exports = {
   wrongUsername: "Wrong username or password",
   emptyFields: "Some of the required fields are empty",
   requiredMessage: "required",
+  userUpdated: "User updated successfully",
+  userDeleted: "User deleted successfully",
 }
