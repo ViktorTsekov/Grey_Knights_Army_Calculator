@@ -14,6 +14,7 @@ function Users(props) {
     fetch('/clients')
       .then(res => res.json())
       .then(data => setUsers(data.filter(item => item.name !== props.user.name)))
+      console.log(users)
   }, [props.user])
 
   return (

@@ -3,11 +3,13 @@ const knex = require('knex')(knexConfig.development)
 
 const retrieveAllUsers = () => {
   return knex('users')
+    .join('users_details', 'users.id', 'users_details.user_id')
     .select({
       id: 'users.id',
       name: 'users.name',
       role: 'users.role',
       isDeleted: 'users.is_deleted',
+      geoLocation: 'users_details.geo_location'
     })
     .then((result) => {
       return result.filter(user => user.isDeleted === 0)

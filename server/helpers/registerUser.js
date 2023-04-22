@@ -26,6 +26,10 @@ const addNewUserToDb = (user) => {
   return knex('users').insert(user)
 }
 
+const insertUserDetails = (user_details) => {
+  return knex('users_details').insert(user_details)
+}
+
 const passwordIsSecure = (password) => {
   const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -45,4 +49,29 @@ const passwordIsSecure = (password) => {
   return containsUppercase && containsLowercase && containsSpecialCharacter && is8CharactersLong
 }
 
-module.exports = {userNameIsAvailable, passwordIsSecure, addNewUserToDb}
+const getCurrentDate = () => {
+  const ts = Date.now()
+
+  const dateObject = new Date(ts)
+  const date = dateObject.getDate()
+  const month = dateObject.getMonth() + 1
+  const year = dateObject.getFullYear()
+
+  return date + "/" + month + "/" + year
+}
+
+const getGeoLocation = (ipAddress) => {
+  const geoip = require('geoip-lite')
+  const geo = geoip.lookup(ipAddress)
+
+  if(geo !== null && geo !== undefined) {
+    delete geo['range']
+    delete geo['eu']
+    delete geo['metro']
+    delete geo['area']
+  }
+
+  return JSON.stringify(geo)
+}
+
+module.exports = {userNameIsAvailable, passwordIsSecure, addNewUserToDb, insertUserDetails, getCurrentDate, getGeoLocation}

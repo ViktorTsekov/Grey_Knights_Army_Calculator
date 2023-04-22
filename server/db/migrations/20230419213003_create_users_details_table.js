@@ -9,6 +9,17 @@ exports.up = function(knex) {
     table.string('ip_address')
     table.string('geo_location')
   })
+  .then(() => {
+    // Copy users data to users_details
+    knex('users').select("id").then((result) => {
+      result.forEach(async (el) => {
+        await knex('users_details').insert({
+          user_id: el.id,
+          date_of_registration: "-",
+        })
+      })
+    })
+  })
 };
 
 /**

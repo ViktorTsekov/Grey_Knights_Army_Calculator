@@ -63,6 +63,13 @@ function User(props) {
           <option value="admin">admin</option>
         </select>
       </span>
+      {
+        props.user.geoLocation !== null &&
+          <div>
+            <span>Geo location:</span>
+            <span>{props.user.geoLocation}</span>
+          </div>
+      }
       <Button label="Delete" margin="0px" onClick={() => deleteUser(props.user.id)} className="alertButton" />
     </div>
   )
