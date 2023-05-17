@@ -5,7 +5,7 @@ module.exports = (app) => {
   app.get('/clients', (req, res) => {
     try {
       usersViewHelper
-        .retrieveAllUsers()
+        .retrieveAllUsers(req.query.name)
         .then((data) => {
           return res.status(200).json(data)
         })

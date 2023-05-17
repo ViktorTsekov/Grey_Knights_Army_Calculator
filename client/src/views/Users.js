@@ -11,10 +11,9 @@ function Users(props) {
   }
 
   useEffect(() => {
-    fetch('/clients')
+    fetch(`/clients?name=${props.user.name}`)
       .then(res => res.json())
-      .then(data => setUsers(data.filter(item => item.name !== props.user.name)))
-      console.log(users)
+      .then(data => setUsers(data))
   }, [props.user])
 
   return (
