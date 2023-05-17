@@ -17,7 +17,11 @@ function Header(props) {
           }
           {
             props.user.role === "admin" &&
-              <a href='/'>Edit Army's Values</a>
+              <a href='/army-values'>Edit Army's Values</a>
+          }
+          {
+            props.user.role === "admin" &&
+              <a href='/wargear-values'>Edit Wargear's Values</a>
           }
           <a href='/login' onClick={() => fetch("/logout")}>Log Out</a>
         </ul>

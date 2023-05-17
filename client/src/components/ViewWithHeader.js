@@ -4,7 +4,8 @@ import App from '../views/App'
 import Users from '../views/Users'
 import useCurrentUser from "../custom_hooks/useCurrentUser"
 import useAuthenticated from '../custom_hooks/useAuthenticated'
-
+import ArmyValues from "../views/ArmyValues"
+import WargearValues from "../views/WargearValues"
 
 const ViewWithHeader = (props) => {
   useAuthenticated()
@@ -14,6 +15,8 @@ const ViewWithHeader = (props) => {
   const views = {
     Home: <App user={user} />,
     Users: <Users user={user} />,
+    ArmyValues: <ArmyValues user={user} />,
+    WargearValues: <WargearValues user={user} />
   }
 
   return (
