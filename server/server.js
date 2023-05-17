@@ -7,15 +7,17 @@ const app = express()
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 const session = require('express-session')
-const methodOverride = require('method-override')
 const LocalStrategy = require('passport-local').Strategy
+const https = require('https')
+const fs = require('fs')
 
 const registerUserHelper = require('./helpers/registerUser')
 const loginUserHelper = require('./helpers/loginUser.js')
 const authUser = require('./passportAuth.js')
+const statusCodes = require('../client/src/static_files/statusCodes')
+
 const User = require('./models/user.js')
 const UserDetails = require('./models/userDetails.js')
-const statusCodes = require('../client/src/static_files/statusCodes')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
@@ -26,7 +28,6 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(methodOverride('_method'))
 
 passport.use(new LocalStrategy({ 
   usernameField: 'name',
@@ -117,4 +118,9 @@ app.get('/retrieveCurrentUser', (req, res) => {
   res.json({user: req.user})
 })
 
-app.listen(process.env.PORT, () => console.log('App listening on port:', process.env.PORT))
+const sslServer = https.createServer({
+  key: fs.readFileSync("./ssl/localhost-key.pem"),
+  cert: fs.readFileSync("./ssl/localhost.pem"),
+}, app)
+
+sslServer.listen(process.env.PORT, () => console.log('App listening on port:', process.env.PORT))
