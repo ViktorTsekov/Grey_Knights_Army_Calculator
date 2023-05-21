@@ -26,6 +26,14 @@ button {
   background-color: $redAlertHover;
 }
 
+.greenAffirmationButton {
+  background-color: $greenAffirmation;
+}
+
+.greenAffirmationButton:hover {
+  background-color: $greenAffirmationHover;
+}
+
 button:active {
   background-color: $darkGreyBackground !important;
 }

@@ -18,16 +18,25 @@ function Users(props) {
 
   return (
     <div className="usersContainer">
-      <h2 className="statusMessage">{statusMessage}</h2>
       {
-        users.map((user) => {
-          return <User 
-            key={user.id} 
-            user={user} 
-            setStatusMessage={setStatusMessage}
-            removeUserFromCurrentView={removeUserFromCurrentView}
-          />
-        })
+        users.length !== 0 &&
+          <div>
+            <h2 className="statusMessage">{statusMessage}</h2>
+            {
+              users.map((user) => {
+                return <User 
+                  key={user.id} 
+                  user={user} 
+                  setStatusMessage={setStatusMessage}
+                  removeUserFromCurrentView={removeUserFromCurrentView}
+                />
+              })
+            }
+          </div>
+      }
+      {
+        users.length === 0 &&
+          <h2>No users to display</h2>
       }
     </div>
   )

@@ -1,0 +1,10 @@
+@import "../static_files/colors.scss";
+
+.armyValuesStatusMessage {
+  margin-left: 5px;
+  color: #{$greenAffirmation};
+}
+
+.armyValuesContainer {
+  margin: 60px;
+}

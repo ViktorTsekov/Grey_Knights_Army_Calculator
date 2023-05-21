@@ -8,4 +8,5 @@ module.exports = {
   requiredMessage: "required",
   userUpdated: "User updated successfully",
   userDeleted: "User deleted successfully",
+  armyValuesUpdated: "Army values updated successfully"
 }
