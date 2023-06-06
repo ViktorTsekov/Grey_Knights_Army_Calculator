@@ -47,6 +47,7 @@ passport.deserializeUser((id, done) => {
 
 require('./usersRoutes')(app)
 require('./armyValuesRoutes')(app)
+require('./wargearValuesRoutes')(app)
 
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),

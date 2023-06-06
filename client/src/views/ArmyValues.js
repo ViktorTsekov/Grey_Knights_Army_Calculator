@@ -36,6 +36,7 @@ function ArmyValues() {
         }
       })
       .then(data => {
+        setUpdatedValues([])
         setStatusMessage(data.message)
 
         const timeout = setTimeout(() => {
