@@ -18,12 +18,17 @@ const ViewWithHeader = (props) => {
     ArmyValues: <ArmyValues user={user} />,
     WargearValues: <WargearValues user={user} />
   }
-
+  
   return (
     <div>
-      <Header user={user} />
       {
-        views[props.viewName]
+        user.name !== undefined &&
+          <div>
+            <Header user={user} />
+            {
+              views[props.viewName]
+            }
+          </div>
       }
     </div>
   )

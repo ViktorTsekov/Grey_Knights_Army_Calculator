@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react"
 import User from "../components/User"
+import InputField from '../components/InputField'
 import "../styles/Users.scss"
 
 function Users(props) {
+  const [filteredName, setFilteredName] = useState("")
   const [statusMessage, setStatusMessage] = useState("")
   const [users, setUsers] = useState([])
 
@@ -14,7 +16,7 @@ function Users(props) {
     fetch(`/clients?name=${props.user.name}`)
       .then(res => res.json())
       .then(data => setUsers(data))
-  }, [props.user])
+  }, [props.user, filteredName])
 
   return (
     <div className="usersContainer">
@@ -22,14 +24,25 @@ function Users(props) {
         users.length !== 0 &&
           <div>
             <h2 className="statusMessage">{statusMessage}</h2>
+            <InputField margin="0px 0px 35px 5px" labelInline="left" name="filteredName" label="Search by name" type="text" isRequired={false} onChange={(val) => setFilteredName(val)} value={filteredName} />
             {
-              users.map((user) => {
-                return <User 
+              users
+              .filter((user) => {
+                if(filteredName !== "") {
+                  if(filteredName === user.name) {
+                    return user
+                  }
+                } else {
+                  return user
+                }
+              })
+              .map((user) => {
+                return( <User 
                   key={user.id} 
                   user={user} 
                   setStatusMessage={setStatusMessage}
                   removeUserFromCurrentView={removeUserFromCurrentView}
-                />
+                />)
               })
             }
           </div>

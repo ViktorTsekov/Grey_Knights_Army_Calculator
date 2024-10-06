@@ -15,9 +15,9 @@ function InputField(props) {
   }, [props.value, props.isRequired])
 
   return (
-    <div className="inputContainer">
-      <label htmlFor={props.name} className="label">{props.label}</label>
-      <input className="inputField" type={props.type} name={props.name} onChange={(e) => props.updateValue(e.target.value)} value={props.value} />
+    <div style={{margin: `${props.margin}`}}  className="inputContainer">
+      <label style={{textAlign: `${props.labelInline}`}} htmlFor={props.name} className="label">{props.label}</label>
+      <input className="inputField" type={props.type} name={props.name} onChange={(e) => props.onChange(e.target.value)} value={props.value} />
       <span className="requiredMessage">{requiredMessage}</span>
     </div>
   )

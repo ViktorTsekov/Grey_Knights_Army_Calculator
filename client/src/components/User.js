@@ -62,7 +62,7 @@ function User(props) {
   }
 
   return (
-    <div style={{margin: "5px"}}>
+    <div className="userContainer">
       <span className="name">{props.user.name}</span>
       <span className="location">
         {"location: "}
@@ -81,6 +81,7 @@ function User(props) {
         </select>
       </span>
       <Button label="Delete" margin="0px" onClick={() => deleteUser(props.user.id)} className="alertButton" />
+      <hr />
     </div>
   )
 }
