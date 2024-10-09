@@ -16,7 +16,14 @@ function InputField(props) {
 
   return (
     <div style={{margin: `${props.margin}`}}  className="inputContainer">
-      <label style={{textAlign: `${props.labelInline}`}} htmlFor={props.name} className="label">{props.label}</label>
+      {
+        props.boldLabel === true &&
+          <h3 style={{textAlign: `${props.labelInline}`}} htmlFor={props.name} className="label">{props.label}</h3>
+      }
+      {
+        (props.boldLabel === false || props.boldLabel === undefined) &&
+          <span style={{textAlign: `${props.labelInline}`}} htmlFor={props.name} className="label">{props.label}</span>
+      }
       <input className="inputField" type={props.type} name={props.name} onChange={(e) => props.onChange(e.target.value)} value={props.value} />
       <span className="requiredMessage">{requiredMessage}</span>
     </div>

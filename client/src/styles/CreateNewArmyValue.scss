@@ -1,0 +1,29 @@
+@import "../static_files/colors.scss";
+
+.createNewArmyContainer {
+  margin: 10px;
+}
+
+.name {
+  width: 300px;
+  display: inline-block;
+}
+
+.listName {
+  width: 500px;
+  display: inline-block;
+}
+
+.costPerUnit {
+  width: 200px;
+  display: inline-block;
+}
+
+.squadSize {
+  width: 150px;
+  display: inline-block;
+}
+
+.statusMessage {
+  color: $greenAffirmation;
+}

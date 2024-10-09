@@ -9,5 +9,9 @@ module.exports = {
   userUpdated: "User updated successfully",
   userDeleted: "User deleted successfully",
   armyValuesUpdated: "Army values updated successfully",
-  wargearValuesUpdated: "Wargear values updated successfully"
+  wargearValuesUpdated: "Wargear values updated successfully",
+  addedSuccessfully: "Added successfully",
+  removedSuccessfully: "Removed successfully",
+  savedSuccessfully: "Army saved successfully",
+  clearedSuccessfully: "Cleared successfully"
 }

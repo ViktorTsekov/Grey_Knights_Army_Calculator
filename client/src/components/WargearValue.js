@@ -14,7 +14,7 @@ function WargearValue(props) {
   return (
     <div style={{margin: '10px'}}>
       <span className="wargearName">{props.value.name}</span>
-      <span className="wargearCost">{"cost:"} <input value={unitCost} onChange={(e) => verifyUnitCost(e.target.value)} type="number" className="wargearCostInput" /> {"[0-999]"}</span>
+      <span className="wargearCost">{"cost:"} <input value={unitCost} onChange={(e) => verifyUnitCost(e.target.value)} type="number" className="wargearCostInput" /></span>
     </div>
   )
 }

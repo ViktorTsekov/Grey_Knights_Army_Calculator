@@ -17,6 +17,7 @@ root.render(
           <Route path="/users" element={<ViewWithHeader viewName="Users" />} />
           <Route path="/army-values" element={<ViewWithHeader viewName="ArmyValues" />} />
           <Route path="/wargear-values" element={<ViewWithHeader viewName="WargearValues" />} />
+          <Route path="/create-new-army" element={<ViewWithHeader viewName="CreateNewArmy" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>

@@ -26,13 +26,8 @@ function Users(props) {
             <h2 className="statusMessage">{statusMessage}</h2>
             <InputField margin="0px 0px 35px 5px" labelInline="left" name="filteredName" label="Search by name" type="text" isRequired={false} onChange={(val) => setFilteredName(val)} value={filteredName} />
             {
-              users
-              .filter((user) => {
-                if(filteredName !== "") {
-                  if(filteredName === user.name) {
-                    return user
-                  }
-                } else {
+              users.filter((user) => {
+                if(filteredName === user.name || filteredName === "") {
                   return user
                 }
               })
