@@ -64,7 +64,7 @@ function CreateNewArmy(props) {
 
   const deleteById = (obj) => {
     const newArr = []
-    	console.log(obj)
+
     armyList.forEach((el) => {
       if(el.id !== obj.id) {
         newArr.push(el)
