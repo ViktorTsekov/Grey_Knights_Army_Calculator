@@ -3,7 +3,7 @@ import '../styles/Button.scss'
 
 function Button(props) {
   return (
-    <button style={{margin: `${props.margin}`}} className={props.className === undefined ? "default" : props.className} onClick={() => props.onClick()}>{props.label}</button>
+    <button style={{margin: `${props.margin}`, width: `${props.width}`}} className={props.className === undefined ? "default" : props.className} onClick={() => props.onClick()}>{props.label}</button>
   )
 }
 

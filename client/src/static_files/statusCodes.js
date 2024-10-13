@@ -11,7 +11,9 @@ module.exports = {
   armyValuesUpdated: "Army values updated successfully",
   wargearValuesUpdated: "Wargear values updated successfully",
   addedSuccessfully: "Added successfully",
-  removedSuccessfully: "Removed successfully",
+  removedSuccessfully: "Deleted successfully",
   savedSuccessfully: "Army saved successfully",
-  clearedSuccessfully: "Cleared successfully"
+  updatedSuccessfully: "Army updated successfully",
+  clearedSuccessfully: "Cleared successfully",
+  emptyList: "Cannot save empty list"
 }
