@@ -123,8 +123,8 @@ app.get('/retrieveCurrentUser', (req, res) => {
 })
 
 const sslServer = https.createServer({
-  key: fs.readFileSync("./ssl/localhost-key.pem"),
-  cert: fs.readFileSync("./ssl/localhost.pem"),
+  key: fs.readFileSync("../ssl/localhost-key.pem"),
+  cert: fs.readFileSync("../ssl/localhost.pem"),
 }, app)
 
 sslServer.listen(process.env.PORT, () => console.log('App listening on port:', process.env.PORT))
