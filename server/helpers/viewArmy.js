@@ -14,9 +14,12 @@ const returnArmyById = (armyId) => {
       armyName: 'armies.army_name',
       armyList: 'armies.army_list'
     })
-    .where({id: armyId} && {is_deleted: 0})
+    .where({
+      id: armyId,
+      is_deleted: 0
+    })
     .then((result) => {
-      return result.filter((el) => el.id == armyId)
+      return result
     })
 }
 
@@ -27,7 +30,10 @@ const returnArmiesByUserId = (userId) => {
       armyName: 'armies.army_name',
       armyList: 'armies.army_list'
     })
-    .where({user_id: userId} && {is_deleted: 0})
+    .where({
+      user_id: userId,
+      is_deleted: 0
+    })
     .then((result) => {
       return result
     })

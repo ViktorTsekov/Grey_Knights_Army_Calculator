@@ -59,7 +59,7 @@ function Register() {
 
       <p className={statusMessage.className}>{statusMessage.message}</p>
       
-      <InputField name="name" label="Name" type="text" isRequired={true} updateValue={(val) => setName(val)} value={name} />
+      <InputField name="name" label="Name" type="text" isRequired={true} onChange={(val) => setName(val)} value={name} />
       <InputField name="password" label="Password" type="password" isRequired={true} onChange={(val) => setPassword(val)} value={password} />
       <InputField name="re-type password" label="Re-type password" type="password" isRequired={true} onChange={(val) => setRetypePassword(val)} value={retypePassword} />
 
