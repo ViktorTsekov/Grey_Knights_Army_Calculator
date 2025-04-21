@@ -3,6 +3,8 @@
  * @returns { Promise<void> } 
  */
 exports.seed = async function(knex) {
+  await knex('wargear_values').del();
+  
   await knex('wargear_values').insert([
     {name: 'Incinerator'},
     {name: 'Nemesis daemon hammer'},
