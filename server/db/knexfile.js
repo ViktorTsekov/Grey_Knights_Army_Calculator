@@ -33,7 +33,7 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'postgresqla',
     connection: {
       database: 'my_db',
       user:     'username',
