@@ -2,7 +2,7 @@ const usersViewHelper = require('./helpers/usersView')
 const statusCodes = require('../client/src/static_files/statusCodes')
 
 module.exports = (app) => {
-  app.get('/api/clients', (req, res) => {
+  app.get('/clients', (req, res) => {
     try {
       usersViewHelper
         .retrieveAllUsers(req.query.name)
@@ -14,7 +14,7 @@ module.exports = (app) => {
     }
   })
 
-  app.patch('/api/clients/:id', async (req, res) => {
+  app.patch('/clients/:id', async (req, res) => {
     try {
       const result = await usersViewHelper.updateUsersRoleById(req.params['id'], req.body.role)
       
@@ -26,7 +26,7 @@ module.exports = (app) => {
     }
   })
 
-  app.delete('/api/clients/:id', async (req, res) => {
+  app.delete('/clients/:id', async (req, res) => {
     try {
       const result = await usersViewHelper.deleteUserById(req.params['id'])
       

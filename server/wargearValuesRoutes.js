@@ -2,7 +2,7 @@ const wargearValuesViewHelper = require('./helpers/wargearValuesView')
 const statusCodes = require('../client/src/static_files/statusCodes')
 
 module.exports = (app) => {
-  app.get('/api/wargearValues', (req, res) => {
+  app.get('/wargearValues', (req, res) => {
     try {
       wargearValuesViewHelper
         .retrieveAllWargearValues()
@@ -14,7 +14,7 @@ module.exports = (app) => {
     }
   })
 
-  app.patch('/api/wargearValues/:id', async (req, res) => {
+  app.patch('/wargearValues/:id', async (req, res) => {
     try {
       const result = await wargearValuesViewHelper.updateWargearValueById(req.params['id'], req.body.value)
 
