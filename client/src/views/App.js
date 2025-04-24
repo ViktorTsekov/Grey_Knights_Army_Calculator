@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import Button from '../components/Button'
 import ArmyViewValue from '../components/ArmyViewValue'
+import { useNavigate } from 'react-router-dom';
 
 function App(props) {
+  const navigate = useNavigate();
+
   const [armies, setArmies] = useState([])
   const [statusMessage, setStatusMessage] = useState("")
 
@@ -63,7 +66,7 @@ function App(props) {
           return <ArmyViewValue key={index} deleteById={deleteById} armyValue={el} />
         })
       }
-      <Button margin="0" label="New army" className="greenAffirmationButton" onClick={() => window.location.href = "/create-new-army"}/>
+      <Button margin="0" label="New army" className="greenAffirmationButton" onClick={() => navigate("/create-new-army")}/>
     </div>
   )
 }

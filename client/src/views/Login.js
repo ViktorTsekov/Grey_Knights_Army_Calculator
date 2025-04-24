@@ -21,7 +21,7 @@ function Login() {
 
   const loginUser = () => {
     if(fieldsAreValid(name, password)) {
-      fetch('/login', {
+      fetch('/api/login', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

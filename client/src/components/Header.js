@@ -1,5 +1,6 @@
 import React from "react"
 import logo from "../static_files/logo.png"
+import { Link } from 'react-router-dom';
 import "../styles/Header.scss"
 
 function Header(props) {
@@ -7,23 +8,23 @@ function Header(props) {
     <div>
       <header>
         <ul>
-          <a href='/'>
+          <Link to='/'>
             <img alt="logo" src={logo} width="60px" height="60px" />
-          </a>
-          <a href='/'>Home</a>
+          </Link>
+          <Link to='/'>Home</Link>
           {
             props.user.role === "admin" &&
-              <a href='/users'>Edit Users</a>
+              <Link to='/users'>Edit Users</Link>
           }
           {
             props.user.role === "admin" &&
-              <a href='/army-values'>Edit Army's Values</a>
+              <Link to='/army-values'>Edit Army's Values</Link>
           }
           {
             props.user.role === "admin" &&
-              <a href='/wargear-values'>Edit Wargear's Values</a>
+              <Link to='/wargear-values'>Edit Wargear's Values</Link>
           }
-          <a href='/login' onClick={() => fetch("/logout")}>Log Out</a>
+          <Link to='/login' onClick={() => fetch("/api/logout")}>Log Out</Link>
         </ul>
       </header>
     </div>

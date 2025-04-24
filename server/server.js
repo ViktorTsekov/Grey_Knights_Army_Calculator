@@ -10,7 +10,7 @@ const session = require('express-session')
 const LocalStrategy = require('passport-local').Strategy
 const https = require('https')
 const fs = require('fs')
-const cors = require('cors');
+//const cors = require('cors');
 
 const registerUserHelper = require('./helpers/registerUser')
 const loginUserHelper = require('./helpers/loginUser.js')
@@ -30,10 +30,10 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(cors({
-  origin: 'https://grey-knights-army-manager.online',
-  credentials: true,
-}));
+//app.use(cors({
+//  origin: 'https://grey-knights-army-manager.online',
+//  credentials: true,
+//}));
 
 passport.use(new LocalStrategy({ 
   usernameField: 'name',
@@ -57,13 +57,13 @@ require('./wargearValuesRoutes')(app)
 require('./createNewArmyRoutes')(app)
 require('./viewArmyRoutes.js')(app)
 
-app.post('/login',
+app.post('/api/login',
   passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
   function(req, res) {
     res.json({isAuthenticated: req.isAuthenticated()})
 })
 
-app.get('/logout', (req, res, next) => {
+app.get('/api/logout', (req, res, next) => {
   req.logout(function (err) {
     if (err) { 
       console.error(err)
