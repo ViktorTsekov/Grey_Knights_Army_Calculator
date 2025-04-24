@@ -7,7 +7,9 @@ exports.seed = async function(knex) {
   .select("id")
   .where({name: "admin"})
   .then(async (result) => {
-    await knex("users_details").del().where({user_id: result[0].id});
+    if(result[0] !== undefined) {
+    	 await knex("users_details").del().where({user_id: result[0].id});
+    }
   });
 
   await knex("users").del().where({name: "admin"});

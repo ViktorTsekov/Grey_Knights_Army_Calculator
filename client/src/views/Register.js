@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import useNotAuthenticated from '../custom_hooks/useNotAuthenticated'
 import '../styles/Register.scss'
 import fieldsAreValid from '../helpers/fieldsAreValid';
+import { Link } from 'react-router-dom';
 
 const statusCodes = require('../static_files/statusCodes')
 
@@ -19,7 +20,7 @@ function Register() {
   const registerUser = () => {
     if(fieldsAreValid(name, password, retypePassword)) {
       if(password === retypePassword) {
-        fetch('/register', {
+        fetch('/api/register', {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -67,7 +68,7 @@ function Register() {
       
       <br />
 
-      <a href="/login">Login</a>
+      <Link to="/login">Login</Link>
     </LoginContainer>
   )
 }

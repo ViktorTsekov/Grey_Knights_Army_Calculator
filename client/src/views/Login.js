@@ -6,6 +6,7 @@ import InputField from '../components/InputField'
 import useNotAuthenticated from '../custom_hooks/useNotAuthenticated'
 import "../styles/Login.scss"
 import fieldsAreValid from '../helpers/fieldsAreValid';
+import { Link } from 'react-router-dom';
 
 const statusCodes = require('../static_files/statusCodes')
 
@@ -70,7 +71,7 @@ function Login() {
       
       <br />
 
-      <a href="/register">Register</a>
+      <Link to="/register">Register</Link>
     </LoginContainer>
   )
 }

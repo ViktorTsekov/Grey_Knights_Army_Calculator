@@ -1,5 +1,5 @@
 const knexConfig = require('../db/knexfile.js')
-const knex = require('knex')(knexConfig.development)
+let knex = require('knex')(knexConfig.development)
 
 if(process.env.NODE_ENV === 'production') {
   knex = require('knex')(knexConfig.production)

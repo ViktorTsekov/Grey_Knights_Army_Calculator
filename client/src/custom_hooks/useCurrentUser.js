@@ -4,7 +4,7 @@ const useCurrentUser = () => {
   const [user, setUser] = useState({})
 
   useEffect(() => {
-    fetch("/retrieveCurrentUser")
+    fetch("/api/retrieveCurrentUser")
       .then(res => res.json())
       .then(data => {
         if(data.user !== undefined) {

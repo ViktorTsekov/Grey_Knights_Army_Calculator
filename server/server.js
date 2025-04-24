@@ -10,6 +10,7 @@ const session = require('express-session')
 const LocalStrategy = require('passport-local').Strategy
 const https = require('https')
 const fs = require('fs')
+const cors = require('cors');
 
 const registerUserHelper = require('./helpers/registerUser')
 const loginUserHelper = require('./helpers/loginUser.js')
@@ -28,6 +29,11 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use(cors({
+  origin: 'https://grey-knights-army-manager.online',
+  credentials: true,
+}));
 
 passport.use(new LocalStrategy({ 
   usernameField: 'name',
@@ -75,7 +81,7 @@ app.get('/logout', (req, res, next) => {
   })
 })
 
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
   try {
     const userNameIsAvailable = await registerUserHelper.userNameIsAvailable(req.body.name)
     let ipAddress = req.header('x-forwarded-for').toString()
@@ -118,13 +124,17 @@ app.post('/register', async (req, res) => {
   }
 })
 
-app.get('/retrieveCurrentUser', (req, res) => {
+app.get('/api/retrieveCurrentUser', (req, res) => {
   res.json({user: req.user})
 })
 
-const sslServer = https.createServer({
-  key: fs.readFileSync("../ssl/server-key.pem"),
-  cert: fs.readFileSync("../ssl/server-cert.pem"),
-}, app)
+//const sslServer = https.createServer({
+//  key: fs.readFileSync("../ssl/ca.key"),
+//  cert: fs.readFileSync("../ssl/ca.crt"),
+//}, app)
 
-sslServer.listen(process.env.PORT, () => console.log('App listening on port:', process.env.PORT))
+//sslServer.listen(process.env.PORT, () => console.log('App listening on port:', process.env.PORT))
+
+app.listen(process.env.PORT, '127.0.0.1', () => {
+  console.log(`Server running on http://localhost:${process.env.PORT}`);
+});
