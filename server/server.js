@@ -8,8 +8,8 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 const session = require('express-session')
 const LocalStrategy = require('passport-local').Strategy
-const https = require('https')
-const fs = require('fs')
+//const https = require('https')
+//const fs = require('fs')
 //const cors = require('cors');
 
 const registerUserHelper = require('./helpers/registerUser')
@@ -19,6 +19,7 @@ const statusCodes = require('../client/src/static_files/statusCodes')
 
 const User = require('./models/user.js')
 const UserDetails = require('./models/userDetails.js')
+const { development } = require('./db/knexfile.js')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
@@ -57,13 +58,13 @@ require('./wargearValuesRoutes')(app)
 require('./createNewArmyRoutes')(app)
 require('./viewArmyRoutes.js')(app)
 
-app.post('/login',
+app.post(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/login`,
   passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
   function(req, res) {
     res.json({isAuthenticated: req.isAuthenticated()})
 })
 
-app.get('/logout', (req, res, next) => {
+app.get(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/logout`, (req, res, next) => {
   req.logout(function (err) {
     if (err) { 
       console.error(err)
@@ -81,7 +82,7 @@ app.get('/logout', (req, res, next) => {
   })
 })
 
-app.post('/register', async (req, res) => {
+app.post(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/register`, async (req, res) => {
   try {
     const userNameIsAvailable = await registerUserHelper.userNameIsAvailable(req.body.name)
 
@@ -119,7 +120,7 @@ app.post('/register', async (req, res) => {
   }
 })
 
-app.get('/retrieveCurrentUser', (req, res) => {
+app.get(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/retrieveCurrentUser`, (req, res) => {
   res.json({user: req.user})
 })
 

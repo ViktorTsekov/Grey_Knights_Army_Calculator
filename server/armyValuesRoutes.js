@@ -1,8 +1,10 @@
+require('dotenv').config()
+
 const armyValuesViewHelper = require('./helpers/armyValuesView')
 const statusCodes = require('../client/src/static_files/statusCodes')
 
 module.exports = (app) => {
-  app.get('/armyValues', (req, res) => {
+  app.get(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/armyValues`, (req, res) => {
     try {
       armyValuesViewHelper
         .retrieveAllArmyValues()
@@ -14,7 +16,7 @@ module.exports = (app) => {
     }
   })
 
-  app.patch('/armyValues/:id', async (req, res) => {
+  app.patch(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/armyValues/:id`, async (req, res) => {
     try {
       const result = await armyValuesViewHelper.updateArmyValueById(req.params['id'], req.body.value)
 

@@ -52,6 +52,8 @@ function Register() {
     } else {
       setStatusMessage({message: statusCodes.emptyFields, className: "negativeMessage"})
     }
+
+    setTimeout(() => setStatusMessage({message: "", className: "positiveMessage"}), 3500)
   }
 
   return (
