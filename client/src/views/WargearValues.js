@@ -9,7 +9,7 @@ function WargearValues() {
   const [statusMessage, setStatusMessage] = useState("")
 
   useEffect(() => {
-    fetch('/wargearValues')
+    fetch('/api/wargearValues')
       .then(res => res.json())
       .then(data => setWargearValues(data))
   }, [])
@@ -23,7 +23,7 @@ function WargearValues() {
 
   const updateChangedValues = () => {
     updatedValues.forEach(value => {
-      fetch(`/wargearValues/${value.id}`, {
+      fetch(`/api/wargearValues/${value.id}`, {
         headers: {
           "Content-Type": "application/json"
         },

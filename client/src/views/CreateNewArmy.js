@@ -98,7 +98,7 @@ function CreateNewArmy(props) {
     const armyId = queryParams.get("armyId")
 
     if(armyId === null || armyId === undefined) {
-      fetch('/create-army', {
+      fetch('/api/create-army', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -130,7 +130,7 @@ function CreateNewArmy(props) {
         console.error(e)
       })
     } else {
-      fetch('/update-army', {
+      fetch('/api/update-army', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -166,7 +166,7 @@ function CreateNewArmy(props) {
     const armyId = queryParams.get("armyId")
 
     if(armyId !== undefined && armyId !== null) {
-      fetch(`/get-army?armyId=${armyId}`, {
+      fetch(`/api/get-army?armyId=${armyId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -189,7 +189,7 @@ function CreateNewArmy(props) {
   }, [])
 
   useEffect(() => {
-    fetch('/armyValues')
+    fetch('/api/armyValues')
       .then(res => res.json())
       .then(data => setArmyValues(data))
   }, [])

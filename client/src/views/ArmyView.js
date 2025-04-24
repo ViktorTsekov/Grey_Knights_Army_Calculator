@@ -26,7 +26,7 @@ function ArmyView() {
     const armyId = queryParams.get("armyId")
 
     if(armyId !== undefined) {
-      fetch(`/get-army?armyId=${armyId}`, {
+      fetch(`/api/get-army?armyId=${armyId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

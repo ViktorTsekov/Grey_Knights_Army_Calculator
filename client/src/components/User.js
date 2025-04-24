@@ -12,7 +12,7 @@ function User(props) {
   }, [props.user])
 
   const updateUsersRole = (id, role) => {
-    fetch(`/clients/${id}`, {
+    fetch(`/api/clients/${id}`, {
       headers: {
         "Content-Type": "application/json"
       },
@@ -38,7 +38,7 @@ function User(props) {
   }
 
   const deleteUser = (id) => {
-    fetch(`/clients/${id}`, {
+    fetch(`/api/clients/${id}`, {
       headers: {
         "Content-Type": "application/json"
       },

@@ -10,7 +10,7 @@ function App(props) {
   const [statusMessage, setStatusMessage] = useState("")
 
   const deleteById = (id) => {
-    fetch('/delete-army', {
+    fetch('/api/delete-army', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ function App(props) {
   }
 
   useEffect(() => {
-    fetch(`/get-armies?userId=${props.user.id}`)
+    fetch(`/api/get-armies?userId=${props.user.id}`)
       .then((res) => {
         if(res.ok) {
           return res.json()

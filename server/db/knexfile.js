@@ -32,7 +32,7 @@ module.exports = {
   production: {
     client: 'mysql2',
     connection: {
-	host: 'db-mysql-nyc1-96665-do-user-18178818-0.j.db.ondigitalocean.com',
+	      host: 'db-mysql-nyc1-96665-do-user-18178818-0.j.db.ondigitalocean.com',
         port: 25060,
         user: process.env.PRODUCTION_DATABASE_USER,
         password: process.env.PRODUCTION_DATABASE_PASSWORD,

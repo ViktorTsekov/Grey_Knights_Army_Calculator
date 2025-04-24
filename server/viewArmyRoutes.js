@@ -2,7 +2,7 @@ const statusCodes = require('../client/src/static_files/statusCodes')
 const viewArmyHelper = require('./helpers/viewArmy')
 
 module.exports = (app) => {
-  app.delete('/delete-army', (req, res) => {
+  app.delete('/api/delete-army', (req, res) => {
     try {
       viewArmyHelper
         .deleteArmyById(req.body.armyId)
@@ -14,7 +14,7 @@ module.exports = (app) => {
     }
   })
 
-  app.get('/get-army', (req, res) => {
+  app.get('/api/get-army', (req, res) => {
     try {
       viewArmyHelper
         .returnArmyById(req.query.armyId)
@@ -26,7 +26,7 @@ module.exports = (app) => {
     }
   })
 
-  app.get('/get-armies', (req, res) => {
+  app.get('/api/get-armies', (req, res) => {
     try {
       viewArmyHelper
         .returnArmiesByUserId(req.query.userId)

@@ -2,7 +2,7 @@ const createArmyHelper = require('./helpers/createArmyView')
 const statusCodes = require('../client/src/static_files/statusCodes')
 
 module.exports = (app) => {
-  app.post('/update-army', (req, res) => {
+  app.post('/api/update-army', (req, res) => {
     try {
       createArmyHelper
         .updateExistingArmy(req.body.armyId, req.body.armyName, req.body.armyList)
@@ -14,7 +14,7 @@ module.exports = (app) => {
     }
   })
 
-  app.post('/create-army', (req, res) => {
+  app.post('/api/create-army', (req, res) => {
     try {
       createArmyHelper
         .addNewArmyToDb(req.body)

@@ -9,7 +9,7 @@ function ArmyValues() {
   const [statusMessage, setStatusMessage] = useState("")
 
   useEffect(() => {
-    fetch('/armyValues')
+    fetch('/api/armyValues')
       .then(res => res.json())
       .then(data => setArmyValues(data))
   }, [])
@@ -23,7 +23,7 @@ function ArmyValues() {
 
   const updateChangedValues = () => {
     updatedValues.forEach(value => {
-      fetch(`/armyValues/${value.id}`, {
+      fetch(`/api/armyValues/${value.id}`, {
         headers: {
           "Content-Type": "application/json"
         },

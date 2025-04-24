@@ -13,7 +13,7 @@ function Users(props) {
   }
 
   useEffect(() => {
-    fetch(`/clients?name=${props.user.name}`)
+    fetch(`/api/clients?name=${props.user.name}`)
       .then(res => res.json())
       .then(data => setUsers(data))
   }, [props.user, filteredName])
