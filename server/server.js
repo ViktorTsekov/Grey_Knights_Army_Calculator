@@ -84,11 +84,11 @@ app.get('/api/logout', (req, res, next) => {
 app.post('/api/register', async (req, res) => {
   try {
     const userNameIsAvailable = await registerUserHelper.userNameIsAvailable(req.body.name)
-    let ipAddress = req.header('x-forwarded-for').toString()
+    //let ipAddress = req.header('x-forwarded-for').toString()
 
-    if(ipAddress.includes(",")) {
-      ipAddress = ipAddress.split(",")[0]
-    }
+    //if(ipAddress.includes(",")) {
+    //  ipAddress = ipAddress.split(",")[0]
+    //}
 
     if(!registerUserHelper.passwordIsSecure(req.body.password)) {
       return res.status(400).json({message: statusCodes.passwordUnsecure})
@@ -110,8 +110,8 @@ app.post('/api/register', async (req, res) => {
       .then((userId) => {
         userDetails.user_id = userId[0]
         userDetails.date_of_registration = registerUserHelper.getCurrentDate()
-        userDetails.ip_address = ipAddress
-        userDetails.geo_location = registerUserHelper.getGeoLocation(ipAddress)
+        userDetails.ip_address = "NaN"
+        userDetails.geo_location = "NaN"
 
         registerUserHelper
           .insertUserDetails(userDetails)
