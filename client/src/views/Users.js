@@ -27,7 +27,7 @@ function Users(props) {
             <InputField margin="0px 0px 35px 5px" labelInline="left" name="filteredName" label="Search by name" type="text" isRequired={false} onChange={(val) => setFilteredName(val)} value={filteredName} />
             {
               users.filter((user) => {
-                if(filteredName === user.name || filteredName === "") {
+                if(user.name.startsWith(filteredName) || filteredName === "") {
                   return user
                 }
               })
