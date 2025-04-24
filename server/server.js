@@ -11,22 +11,25 @@ const LocalStrategy = require('passport-local').Strategy
 //const https = require('https')
 //const fs = require('fs')
 //const cors = require('cors');
-
 const registerUserHelper = require('./helpers/registerUser')
 const loginUserHelper = require('./helpers/loginUser.js')
 const authUser = require('./passportAuth.js')
 const statusCodes = require('../client/src/static_files/statusCodes')
-
 const User = require('./models/user.js')
 const UserDetails = require('./models/userDetails.js')
-const { development } = require('./db/knexfile.js')
+//const { development } = require('./db/knexfile.js')
+const MemoryStore = require('memorystore')(session)
 
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  cookie: { maxAge: 86400000 },
+  store: new MemoryStore({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  }),
   resave: false,
-  saveUninitialized: false
+  secret: process.env.SESSION_SECRET,
+  saveUninitialized: true
 }))
 app.use(passport.initialize())
 app.use(passport.session())
