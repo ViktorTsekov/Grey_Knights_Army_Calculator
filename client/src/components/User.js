@@ -3,14 +3,6 @@ import Button from "../components/Button"
 import "../styles/User.scss"
 
 function User(props) {
-  const [usersLocation, setUsersLocation] = useState(null)
-
-  useEffect(() => {
-    if(props.user.geoLocation !== null) {
-      setUsersLocation(JSON.parse(props.user.geoLocation))
-    }
-  }, [props.user])
-
   const updateUsersRole = (id, role) => {
     fetch(`/api/clients/${id}`, {
       headers: {
@@ -64,15 +56,6 @@ function User(props) {
   return (
     <div className="userContainer">
       <span className="name">{props.user.name}</span>
-      <span className="location">
-        {"location: "}
-        {
-          usersLocation !== null &&
-            <span>
-              {`${usersLocation.country}, ${usersLocation.city}, [${usersLocation.ll[0]}, ${usersLocation.ll[1]}]`}
-            </span>
-        }
-      </span>
       <span className="roleContainer">
         <span className="role">role:</span>
         <select onChange={(e) => updateUsersRole(props.user.id, e.target.value)} defaultValue={props.user.role}>

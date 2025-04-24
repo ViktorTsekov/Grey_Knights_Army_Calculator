@@ -106,7 +106,7 @@ app.post('/register', async (req, res) => {
         userDetails.user_id = userId[0]
         userDetails.date_of_registration = registerUserHelper.getCurrentDate()
         userDetails.ip_address = "N/A"
-        userDetails.geo_location = "N/A"
+        userDetails.geo_location = {}
 
         registerUserHelper
           .insertUserDetails(userDetails)
