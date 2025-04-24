@@ -57,13 +57,13 @@ require('./wargearValuesRoutes')(app)
 require('./createNewArmyRoutes')(app)
 require('./viewArmyRoutes.js')(app)
 
-app.post('/api/login',
+app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
   function(req, res) {
     res.json({isAuthenticated: req.isAuthenticated()})
 })
 
-app.get('/api/logout', (req, res, next) => {
+app.get('/logout', (req, res, next) => {
   req.logout(function (err) {
     if (err) { 
       console.error(err)
@@ -81,14 +81,9 @@ app.get('/api/logout', (req, res, next) => {
   })
 })
 
-app.post('/api/register', async (req, res) => {
+app.post('/register', async (req, res) => {
   try {
     const userNameIsAvailable = await registerUserHelper.userNameIsAvailable(req.body.name)
-    //let ipAddress = req.header('x-forwarded-for').toString()
-
-    //if(ipAddress.includes(",")) {
-    //  ipAddress = ipAddress.split(",")[0]
-    //}
 
     if(!registerUserHelper.passwordIsSecure(req.body.password)) {
       return res.status(400).json({message: statusCodes.passwordUnsecure})
@@ -124,7 +119,7 @@ app.post('/api/register', async (req, res) => {
   }
 })
 
-app.get('/api/retrieveCurrentUser', (req, res) => {
+app.get('/retrieveCurrentUser', (req, res) => {
   res.json({user: req.user})
 })
 
