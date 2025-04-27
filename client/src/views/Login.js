@@ -41,6 +41,8 @@ function Login() {
       .then(data => {
         if(data.isAuthenticated === true) {
           navigate("/")
+        } else {
+          throw(statusCodes.wrongUsername)
         }
       })
       .catch((e) => {
