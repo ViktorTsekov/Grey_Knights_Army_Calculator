@@ -32,7 +32,7 @@ function Login() {
         })
       })
       .then(res => {
-        if(res.status === 404) {
+        if(res.isAuthenticated === false || res.isAuthenticated === undefined) {
           throw(statusCodes.wrongUsername)
         }
 
@@ -56,6 +56,10 @@ function Login() {
     } else {
       setAlertMessage(statusCodes.emptyFields)
     }
+
+    const timeout = setTimeout(() => setAlertMessage(""), 4000)
+    
+    return () => clearTimeout(timeout)
   }
 
   return (
