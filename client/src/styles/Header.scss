@@ -1,4 +1,4 @@
-@use "../static_files/colors.scss";
+@use "../static_files/colors" as *;
 
 header {
   position: fixed;

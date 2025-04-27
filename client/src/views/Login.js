@@ -32,24 +32,19 @@ function Login() {
         })
       })
       .then(res => {
-        if(res.isAuthenticated === false || res.isAuthenticated === undefined) {
+        if(res.status === 404) {
           throw(statusCodes.wrongUsername)
+        } else {
+          return res.json()
         }
-
-        return res.json()
       })
       .then(data => {
         if(data.isAuthenticated === true) {
           navigate("/")
         }
       })
-      .catch(e => {
-        if(typeof e === "string") {
-          setAlertMessage(e)
-        } else {
-          console.error(e)
-        }
-
+      .catch((e) => {
+        setAlertMessage(e)
         setName("")
         setPassword("")
       })

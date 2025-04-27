@@ -1,5 +1,5 @@
-@use "./static_files/colors.scss";
-@use "./static_files/fonts.scss";
+@use "./static_files/colors" as *;
+@use "./static_files/fonts" as *;
 
 html body {
   background-color: $darkGreyBackground;
