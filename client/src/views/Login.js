@@ -48,11 +48,11 @@ function Login() {
         }
       })
       .catch((e) => {
+        // Fix Later
         if (e instanceof Error) {
-          setAlertMessage(e.message)
+          setAlertMessage(statusCodes.wrongUsername)
         }
 
-        console.log(e)
         setName("")
         setPassword("")
       })
