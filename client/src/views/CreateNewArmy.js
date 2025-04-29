@@ -201,17 +201,9 @@ function CreateNewArmy(props) {
           return <div key={index}>
             <h3>{armyClass}</h3>
             {
-              armyValues.filter(((armyValue) => {
-                if(armyValue.class === armyClass) {
-                  return armyValue
-                } else {
-                  return ''
-                }
-              }))
+              armyValues.filter(((armyValue) => armyValue.class === armyClass))
               .map((armyValue, index) => {
-                if(armyValue.constructor === ({}).constructor) {
-                  return <CreateNewArmyValue key={index} value={armyValue} onClick={(obj) => addUnit(obj)} />
-                }
+                return <CreateNewArmyValue key={index} value={armyValue} onClick={(obj) => addUnit(obj)} />
               })
             }
           </div>
