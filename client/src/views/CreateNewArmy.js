@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component, PropTypes } from "react"
+import React, { useEffect, useState } from "react"
 import CreateNewArmyValue from "../components/CreateNewArmyValue"
 import Button from '../components/Button'
 import InputField from "../components/InputField"
@@ -202,10 +202,16 @@ function CreateNewArmy(props) {
             <h3>{armyClass}</h3>
             {
               armyValues.filter(((armyValue) => {
-                if(armyValue.class === armyClass) return armyValue
+                if(armyValue.class === armyClass) {
+                  return armyValue
+                } else {
+                  return ''
+                }
               }))
               .map((armyValue, index) => {
-                return <CreateNewArmyValue key={index} value={armyValue} onClick={(obj) => addUnit(obj)} />
+                if(armyValue.constructor === ({}).constructor) {
+                  return <CreateNewArmyValue key={index} value={armyValue} onClick={(obj) => addUnit(obj)} />
+                }
               })
             }
           </div>
