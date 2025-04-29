@@ -33,7 +33,7 @@ function Login() {
       })
       .then(res => {
         if(res.status === 404) {
-          throw(statusCodes.wrongUsername)
+          throw new Error(statusCodes.wrongUsername)
         } else {
           return res.json()
         }
@@ -41,12 +41,15 @@ function Login() {
       .then(data => {
         if(data.isAuthenticated === true) {
           navigate("/")
-        } else {
-          throw(statusCodes.wrongUsername)
         }
       })
       .catch((e) => {
-        setAlertMessage(e)
+        if (e instanceof Error) {
+          setAlertMessage(e.message)
+        } else {
+          setAlertMessage('An unexpected error occurred')
+        }
+        
         setName("")
         setPassword("")
       })
