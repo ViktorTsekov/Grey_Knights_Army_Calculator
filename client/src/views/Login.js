@@ -72,7 +72,7 @@ function Login() {
       <InputField name="name" label="Name" type="text" isRequired={true} onChange={(val) => setName(val)} value={name} />
       <InputField name="password" label="Password" type="password" isRequired={true} onChange={(val) => setPassword(val)} value={password} />
 
-      <Button label="Login" onClick={() => loginUser()}/>
+      {/* <Button label="Login" onClick={() => loginUser()}/> */}
       
       <br />
 
