@@ -32,8 +32,12 @@ function Login() {
         })
       })
       .then(res => {
-        if(res.status === 404) {
-          throw new Error(statusCodes.wrongUsername)
+        if(!res.ok === 404) {
+          if(res.status === 404) {
+            throw new Error(statusCodes.wrongUsername)
+          } else {
+            throw new Error('An unexpected error has occurred')
+          }
         } else {
           return res.json()
         }
@@ -46,8 +50,6 @@ function Login() {
       .catch((e) => {
         if (e instanceof Error) {
           setAlertMessage(e.message)
-        } else {
-          setAlertMessage('An unexpected error has occurred')
         }
 
         console.log(e)
