@@ -45,11 +45,11 @@ function Login() {
       })
       .catch((e) => {
         if (e instanceof Error) {
-          setAlertMessage('asd')
+          setAlertMessage(e.message)
         } else {
-          setAlertMessage('An unexpected error occurred')
+          setAlertMessage('An unexpected error has occurred')
         }
-
+        
         console.log(e.message)
         setName("")
         setPassword("")
@@ -72,7 +72,7 @@ function Login() {
       <InputField name="name" label="Name" type="text" isRequired={true} onChange={(val) => setName(val)} value={name} />
       <InputField name="password" label="Password" type="password" isRequired={true} onChange={(val) => setPassword(val)} value={password} />
 
-      {/* <Button label="Login" onClick={() => loginUser()}/> */}
+      <Button label="Login" onClick={() => loginUser()}/>
       
       <br />
 
