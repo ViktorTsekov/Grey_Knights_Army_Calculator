@@ -26,11 +26,7 @@ function Users(props) {
             <h2 className="statusMessage">{statusMessage}</h2>
             <InputField margin="0px 0px 35px 5px" labelInline="left" name="filteredName" label="Search by name" type="text" isRequired={false} onChange={(val) => setFilteredName(val)} value={filteredName} />
             {
-              users.filter((user) => {
-                if(user.name.startsWith(filteredName) || filteredName === "") {
-                  return user
-                }
-              })
+              users.filter((user) => (user.name.startsWith(filteredName) || filteredName === ""))
               .map((user) => {
                 return( <User 
                   key={user.id} 
