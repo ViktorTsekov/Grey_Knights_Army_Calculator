@@ -49,8 +49,8 @@ function Login() {
         } else {
           setAlertMessage('An unexpected error has occurred')
         }
-        
-        console.log(e.message)
+
+        console.log(e)
         setName("")
         setPassword("")
       })
