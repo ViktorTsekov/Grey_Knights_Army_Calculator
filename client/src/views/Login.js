@@ -45,11 +45,12 @@ function Login() {
       })
       .catch((e) => {
         if (e instanceof Error) {
-          setAlertMessage(e.message)
+          setAlertMessage('asd')
         } else {
           setAlertMessage('An unexpected error occurred')
         }
-        
+
+        console.log(e.message)
         setName("")
         setPassword("")
       })
