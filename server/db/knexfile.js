@@ -17,7 +17,6 @@ module.exports = {
       database : 'grey_knights_army_calculator'
     }
   },
-
   staging: {
     client: 'mysql',
     connection: {
@@ -28,11 +27,10 @@ module.exports = {
       database : 'grey_knights_army_calculator'
     }
   },
-
   production: {
     client: 'mysql',
     connection: {
-	host: '127.0.0.1',
+	      host: '127.0.0.1',
         port: 3306,
         user: process.env.PRODUCTION_DATABASE_USER,
         password: process.env.PRODUCTION_DATABASE_PASSWORD,
@@ -43,5 +41,4 @@ module.exports = {
       max: 10
     }
   },
-
 };
