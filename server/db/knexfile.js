@@ -30,13 +30,13 @@ module.exports = {
   },
 
   production: {
-    client: 'mysql2',
+    client: 'mysql',
     connection: {
-	      host: 'db-mysql-nyc1-96665-do-user-18178818-0.j.db.ondigitalocean.com',
-        port: 25060,
+	host: '127.0.0.1',
+        port: 3306,
         user: process.env.PRODUCTION_DATABASE_USER,
         password: process.env.PRODUCTION_DATABASE_PASSWORD,
-        database: 'defaultdb'
+        database: 'grey_knights_army_calculator'
     },
     pool: {
       min: 1,
