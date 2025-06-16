@@ -4,8 +4,8 @@ import Logo from "./Logo"
 
 function LoginContainer(props) {
   return (
-    <div className="container">
-      <div className="logo">
+    <div>
+      <div>
         <Logo />
       </div>
       <div className="loginContainer">

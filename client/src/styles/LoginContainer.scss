@@ -1,20 +1,12 @@
 @use "../static_files/colors" as *;
 
-.container {
-  position: absolute;
-  top: calc(55% - 310px);
-  left: calc(50% - 262.5px);
-}
-
-.logo {
-  margin-bottom: 25px;
-}
-
 .loginContainer {
   padding: 24px;
+  margin: 24px;
   border: 2px solid black;
   border-radius: 10px;
-  width: 525px;
   background-color: $lightGreyBackground;
   text-align: center;
+  max-width: fit-content;
+  margin-inline: auto;
 }

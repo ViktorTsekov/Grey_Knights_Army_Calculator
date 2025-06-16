@@ -5,8 +5,8 @@ import "../styles/Logo.scss"
 function Logo() {
   return (
     <div className="logoContainer">
-      <h1>Grey Knights Army Calculator</h1>
-      <img alt="logo" src={logo} width="125px" height="125px" />
+      <p id="title">Grey Knights Army Calculator</p>
+      <img alt="logo" id="logo" src={logo} />
     </div>
   )
 }
