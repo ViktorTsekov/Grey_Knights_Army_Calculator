@@ -11,7 +11,7 @@ ul {
   list-style-type: none;
   display: flex;
   flex-direction: row;
-  height: 70px;
+  height: auto;
 }
 
 ul a {
@@ -50,7 +50,6 @@ ul a:last-child {
 @media (max-width: 768px) {
   ul {
     padding: 0;
-    height: 330px;
     display: flex;
     flex-direction: column;
   }
