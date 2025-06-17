@@ -1,17 +1,17 @@
 .userContainer {
-  width: 600px;
+  width: fit-content;
   margin: 5px;
+  border: 2px black solid;
+  padding: 20px;
 }
 
 .name {
-  min-width: 120px;
   margin-right: 20px;
   display: inline-block;
 }
 
 .location {
   display: inline-block;
-  width: 300px;
   margin-right: 20px;
 }
 
@@ -21,4 +21,20 @@
 
 .role {
   margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+  .userContainer {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .name {
+    padding-bottom: 20px;
+  }
+
+  .roleContainer {
+    padding-bottom: 20px;
+  }
 }

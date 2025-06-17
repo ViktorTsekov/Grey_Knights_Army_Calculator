@@ -64,7 +64,6 @@ function User(props) {
         </select>
       </span>
       <Button label="Delete" margin="0px" onClick={() => deleteUser(props.user.id)} className="alertButton" />
-      <hr />
     </div>
   )
 }

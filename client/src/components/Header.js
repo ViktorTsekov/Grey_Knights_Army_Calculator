@@ -9,7 +9,7 @@ function Header(props) {
       <header>
         <ul>
           <Link to='/'>
-            <img id="logo" alt="logo" src={logo} />
+            <img id="headerLogo" alt="logo" src={logo} />
           </Link>
           <Link to='/'>Home</Link>
           {
