@@ -1,4 +1,4 @@
-name: Deploy to DigitalOcean
+name: Deploy React Frontend to DigitalOcean
 
 on:
   push:
@@ -16,18 +16,19 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Or your version
+          node-version: '20'
 
-      - name: Install dependencies & build
+      - name: Install dependencies & build React app
         run: |
           npm install
           npm run build
+        working-directory: ./client
 
-      - name: Deploy to Droplet via SCP
+      - name: Deploy build folder to Droplet
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "build/"
+          source: "client/build/"
           target: ${{ secrets.SERVER_DEPLOY_PATH }}
