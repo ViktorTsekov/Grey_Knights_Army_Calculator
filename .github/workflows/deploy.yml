@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies & build
         run: |
-          npm ci
+          npm install
           npm run build
 
       - name: Deploy to Droplet via SCP
