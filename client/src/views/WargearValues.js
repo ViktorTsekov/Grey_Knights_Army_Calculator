@@ -54,6 +54,7 @@ function WargearValues() {
         wargearValues.length !== 0 &&
           <div>
             <h2 className="wargearValuesStatusMessage">{statusMessage}</h2>
+            <h2 style={{marginLeft: "10px"}}>Edit Wargear's Values</h2>
             {
               wargearValues.map((value) => {
                 return <WargearValue key={value.id} value={value} addToListOfChangedValues={addToListOfChangedValues} />

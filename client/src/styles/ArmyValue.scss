@@ -1,3 +1,10 @@
+.armyValueContainer {
+  width: fit-content;
+  border: 2px black solid;
+  padding: 20px;
+  margin: 10px;
+}
+
 .inlineInformation {
   margin-right: 20px;
   width: 200px;
@@ -12,4 +19,17 @@
 .costPerUnitInput {
   width: 50px;
   margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .armyValueContainer {
+    display: flex;
+    flex-direction: column;
+    border: 2px black solid;
+    padding: 20px;
+  }
+
+  .inlineInformation {
+    padding-bottom: 10px;
+  }
 }

@@ -1,15 +1,33 @@
+.wargearValueContainer {
+  width: fit-content;
+  border: 2px black solid;
+  padding: 20px;
+  margin: 10px;
+}
+
 .wargearName {
-  margin-right: 20px;
-  width: 300px;
+  min-width: 220px;
   display: inline-block;
 }
 
 .wargearCost {
-  width: 300px;
   display: inline-block;
 }
 
 .wargearCostInput {
   width: 50px;
   margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .armyValueContainer {
+    display: flex;
+    flex-direction: column;
+    border: 2px black solid;
+    padding: 20px;
+  }
+
+  .wargearName {
+    padding-bottom: 10px;
+  }
 }

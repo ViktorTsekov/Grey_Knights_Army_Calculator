@@ -12,7 +12,7 @@ function ArmyValue(props) {
   }
 
   return (
-    <div style={{margin: '10px'}}>
+    <div className="armyValueContainer">
       <span className="inlineInformation">{props.value.name}</span>
       <span className="inlineInformation">class: {props.value.class}</span>
       <span className="inlineInformation">squad size: {props.value.unitSize}</span>

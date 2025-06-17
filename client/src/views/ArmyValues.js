@@ -54,6 +54,7 @@ function ArmyValues() {
         armyValues.length !== 0 &&
           <div>
             <h2 className="armyValuesStatusMessage">{statusMessage}</h2>
+            <h2 style={{marginLeft: "10px"}}>Edit Army's Values</h2>
             {
               armyValues.map((value) => {
                 return <ArmyValue key={value.id} value={value} addToListOfChangedValues={addToListOfChangedValues} />
