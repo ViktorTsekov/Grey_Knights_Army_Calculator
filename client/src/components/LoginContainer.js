@@ -4,7 +4,7 @@ import Logo from "./Logo"
 
 function LoginContainer(props) {
   return (
-    <div>
+    <div className="logoLoginContainer">
       <div>
         <Logo />
       </div>

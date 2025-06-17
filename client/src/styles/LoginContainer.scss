@@ -1,5 +1,9 @@
 @use "../static_files/colors" as *;
 
+.logoLoginContainer {
+  margin-top: 150px;
+}
+
 .loginContainer {
   padding: 24px;
   margin: 24px;
@@ -14,5 +18,9 @@
 @media (max-width: 768px) {
   .loginContainer {
     padding: 12px;
+  }
+
+  .logoLoginContainer {
+    margin-top: 200px;
   }
 }

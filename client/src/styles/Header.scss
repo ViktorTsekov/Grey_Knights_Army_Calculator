@@ -1,9 +1,7 @@
 @use "../static_files/colors" as *;
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: sticky;
   background-color: #{$headerBackground};
   min-width: 100%;
   max-height: auto;
@@ -13,28 +11,35 @@ ul {
   list-style-type: none;
   display: flex;
   flex-direction: row;
+  height: 70px;
 }
 
 ul a {
   text-decoration: none;
   color: $white;
-  margin-top: 12px;
-  margin-right: 20px;
-  height: 15px;
-  padding: 12px;
+  padding: 18px;
+  padding-top: 28px;
   text-align: center;
   cursor: pointer;
+}
+
+ul a:hover {
+  background-color: $lightGreyBackground;
 }
 
 ul a:first-child {
   margin: 0;
   padding: 0;
-  margin-right: 20px;
+  padding-top: 7px;
+}
+
+ul a:first-child:hover {
+  background-color: inherit;
 }
 
 ul a:last-child {
-  position: absolute;
-  right: 0;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 #headerLogo {
@@ -43,17 +48,19 @@ ul a:last-child {
 }
 
 @media (max-width: 768px) {
-  .headerContainer {
-    margin-bottom: 280px;
-  }
-
   ul {
+    padding: 0;
+    height: 330px;
     display: flex;
     flex-direction: column;
   }
 
+  ul a:hover {
+    background-color: inherit;
+  }
+
   ul a:last-child {
-    position: static;
+    margin: 0;
   }
 
   ul a:first-child {

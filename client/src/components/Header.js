@@ -5,7 +5,7 @@ import "../styles/Header.scss"
 
 function Header(props) {
   return (
-    <div className="headerContainer">
+    <div>
       <header>
         <ul>
           <Link to='/'>
