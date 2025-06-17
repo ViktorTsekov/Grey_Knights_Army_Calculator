@@ -5,11 +5,11 @@ import "../styles/Header.scss"
 
 function Header(props) {
   return (
-    <div>
+    <div className="headerContainer">
       <header>
         <ul>
           <Link to='/'>
-            <img alt="logo" src={logo} width="60px" height="60px" />
+            <img id="logo" alt="logo" src={logo} />
           </Link>
           <Link to='/'>Home</Link>
           {

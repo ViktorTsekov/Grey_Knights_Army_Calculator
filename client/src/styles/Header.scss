@@ -5,8 +5,8 @@ header {
   top: 0;
   left: 0;
   background-color: #{$headerBackground};
-  width: 100%;
-  height: 90px;
+  min-width: 100%;
+  max-height: auto;
 }
 
 ul {
@@ -20,9 +20,10 @@ ul a {
   color: $white;
   margin-top: 12px;
   margin-right: 20px;
-  cursor: pointer;
   height: 15px;
-  padding: 8px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
 }
 
 ul a:first-child {
@@ -34,4 +35,28 @@ ul a:first-child {
 ul a:last-child {
   position: absolute;
   right: 0;
+}
+
+#logo {
+  width: 60px;
+  height: 60px;
+}
+
+@media (max-width: 768px) {
+  .headerContainer {
+    margin-bottom: 280px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  ul a:last-child {
+    position: static;
+  }
+
+  ul a:first-child {
+    display: none;
+  }
 }
