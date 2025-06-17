@@ -8,18 +8,41 @@ function ArmyView() {
   const [armyName, setArmyName] = useState("")
   const [totalPoints, setTotalPoints] = useState("")
 
-  const saveAsPdf = () => {
-    const input = document.getElementById('armyDiv')
+const saveAsPdf = () => {
+  const input = document.getElementById('armyDiv')
 
-    html2canvas(input)
-      .then((canvas) => {
-        const imgData = canvas.toDataURL('image/png')
-        const pdf = new jsPDF()
+  html2canvas(input, { scale: 2 }).then((canvas) => {
+    const imgData = canvas.toDataURL('image/png')
 
-        pdf.addImage(imgData, 'JPEG', 0, 0)
-        pdf.save(`${armyName}.pdf`)
-      })
-  }
+    const pdf = new jsPDF('p', 'mm', 'a4')
+    const pdfWidth = pdf.internal.pageSize.getWidth()
+    const pdfHeight = pdf.internal.pageSize.getHeight()
+
+    const canvasWidth = canvas.width
+    const canvasHeight = canvas.height
+
+    const imgProps = {
+      width: pdfWidth,
+      height: (canvasHeight * pdfWidth) / canvasWidth,
+    }
+
+    let heightLeft = imgProps.height
+    let position = 0
+
+    pdf.addImage(imgData, 'PNG', 0, position, imgProps.width, imgProps.height)
+    heightLeft -= pdfHeight
+
+    while (heightLeft > 0) {
+      position = heightLeft - imgProps.height
+      pdf.addPage()
+      pdf.addImage(imgData, 'PNG', 0, position, imgProps.width, imgProps.height)
+      heightLeft -= pdfHeight
+    }
+
+    pdf.save(`${armyName}.pdf`)
+  })
+}
+
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search)

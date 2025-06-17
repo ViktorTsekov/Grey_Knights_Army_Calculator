@@ -1,8 +1,29 @@
 .ArmyViewValueContainer {
-  margin: 10px 0px 10px 0px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: inline-block;
 }
 
 .ArmyViewValueName {
   width: 200px;
+  padding-top: 8px;
   display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .ArmyViewValueContainer {
+    width: fit-content;
+    border: 2px black solid;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ArmyViewValueName {
+    margin-bottom: 10px;
+  }
+
+  .greenButtonsContainer {
+    margin-bottom: 10px;
+  }
 }
