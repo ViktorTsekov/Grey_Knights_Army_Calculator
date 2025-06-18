@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const statusCodes = require('serverStatusCodes')
+const statusCodes = require('./serverStatusCodes.js')
 const viewArmyHelper = require('./helpers/viewArmy')
 
 module.exports = (app) => {

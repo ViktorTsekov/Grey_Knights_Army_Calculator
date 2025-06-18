@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const wargearValuesViewHelper = require('./helpers/wargearValuesView')
-const statusCodes = require('serverStatusCodes')
+const statusCodes = require('./serverStatusCodes.js')
 
 module.exports = (app) => {
   app.get(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/wargearValues`, (req, res) => {

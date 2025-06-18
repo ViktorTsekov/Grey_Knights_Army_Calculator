@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const createArmyHelper = require('./helpers/createArmyView')
-const statusCodes = require('serverStatusCodes')
+const statusCodes = require('./serverStatusCodes.js')
 
 module.exports = (app) => {
   app.post(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/update-army`, (req, res) => {
