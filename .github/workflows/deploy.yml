@@ -24,9 +24,9 @@ jobs:
           npm run build
         working-directory: ./client
 
-        - name: Rename client folder to build
-          run: |
-            mv client build
+      - name: Rename client folder to build
+        run: |
+          mv client build
 
       - name: Deploy build folder to Droplet
         uses: appleboy/scp-action@v0.1.4
