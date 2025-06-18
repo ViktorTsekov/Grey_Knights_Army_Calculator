@@ -25,7 +25,7 @@ function Users(props) {
           <div>
             <h2 className="usersStatusMessage">{statusMessage}</h2>
             <h2>Edit Users</h2>
-            <InputField margin="0px 0px 10px 0px" labelInline="left" name="filteredName" label="Search by name" type="text" isRequired={false} onChange={(val) => setFilteredName(val)} value={filteredName} />
+            <InputField margin="0px 0px 35px 0px" labelInline="left" name="filteredName" label="Search by name" type="text" isRequired={false} onChange={(val) => setFilteredName(val)} value={filteredName} />
             {
               users.filter((user) => (user.name.startsWith(filteredName) || filteredName === "")).length === 0 &&
                 <h2>No Users Found</h2>
