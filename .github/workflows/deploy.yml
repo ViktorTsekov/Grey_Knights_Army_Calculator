@@ -24,6 +24,9 @@ jobs:
           npm run build
         working-directory: ./client
 
+      - name: Verify build contents
+        run: ls -al ./client/build
+
       - name: Upload React build to Droplet as 'build'
         uses: appleboy/scp-action@v0.1.4
         with:
