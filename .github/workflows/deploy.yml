@@ -19,6 +19,7 @@ jobs:
           node-version: '20'  # Or your version
 
       - name: Install dependencies & build
+        working-directory: ./client
         run: |
           npm install
           npm run build
