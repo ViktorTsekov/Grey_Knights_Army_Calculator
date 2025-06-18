@@ -27,15 +27,20 @@ function Users(props) {
             <h2>Edit Users</h2>
             <InputField margin="0px 0px 35px 0px" labelInline="left" name="filteredName" label="Search by name" type="text" isRequired={false} onChange={(val) => setFilteredName(val)} value={filteredName} />
             {
-              users.filter((user) => (user.name.startsWith(filteredName) || filteredName === ""))
-              .map((user) => {
-                return( <User 
-                  key={user.id} 
-                  user={user} 
-                  setStatusMessage={setStatusMessage}
-                  removeUserFromCurrentView={removeUserFromCurrentView}
-                />)
-              })
+              users.filter((user) => (user.name.startsWith(filteredName) || filteredName === "")).length === 0 &&
+                <h2>No Users Found</h2>
+            }
+            {
+              users.filter((user) => (user.name.startsWith(filteredName) || filteredName === "")).length !== 0 &&
+                users.filter((user) => (user.name.startsWith(filteredName) || filteredName === ""))
+                .map((user) => {
+                  return( <User 
+                    key={user.id} 
+                    user={user} 
+                    setStatusMessage={setStatusMessage}
+                    removeUserFromCurrentView={removeUserFromCurrentView}
+                  />)
+                })
             }
           </div>
       }
