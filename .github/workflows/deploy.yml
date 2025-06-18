@@ -24,11 +24,22 @@ jobs:
           npm run build
         working-directory: ./client
 
-      - name: Deploy build folder to Droplet
+      - name: Upload build folder to temporary path
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "client/build/"
-          target: ${{ secrets.SERVER_DEPLOY_PATH }}
+          source: "client/build/*"
+          target: "${{ secrets.SERVER_DEPLOY_PATH }}/build_temp"
+          rm: true 
+
+      - name: Replace old build with new one on server
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            rm -rf ${{ secrets.SERVER_DEPLOY_PATH }}/build
+            mv ${{ secrets.SERVER_DEPLOY_PATH }}/build_temp ${{ secrets.SERVER_DEPLOY_PATH }}/build
