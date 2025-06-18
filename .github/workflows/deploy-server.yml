@@ -1,4 +1,4 @@
-name: Deploy Backend to Digital Ocean
+name: Deploy Backend to DigitalOcean
 
 on:
   push:
