@@ -46,4 +46,4 @@ jobs:
           script: |
             cd /home/${{ secrets.SERVER_USER }}/server
             npm install
-            pm2 restart backend || pm2 start index.js --name backend
+            pm2 restart backend || pm2 start server.js --name backend
