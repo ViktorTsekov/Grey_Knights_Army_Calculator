@@ -9,7 +9,7 @@ module.exports = (app) => {
       usersViewHelper
         .retrieveAllUsers(req.query.name)
         .then((data) => {
-          return res.status(200).json(data)
+          return res.status(200).json(data.filter(el => el.name !== 'admin'))
         })
     } catch(e) {
       console.error(e)
