@@ -216,7 +216,7 @@ function CreateNewArmy(props) {
 
       <h3 className="createNewArmyStatusMessage">{statusMessage}</h3>
 
-      <InputField labelInline="left" boldLabel={true} name="army-name" label="Army name:" type="text" isRequired={false} onChange={(val) => setArmyName(val)} value={armyName} />
+      <InputField labelWidth="130px" labelInline="left" boldLabel={true} name="army-name" label="Army name:" type="text" isRequired={false} onChange={(val) => setArmyName(val)} value={armyName} />
       <h3 className="armyName">{armyName}</h3>
       {
         armyList.map((obj, index) => {

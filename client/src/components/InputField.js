@@ -18,7 +18,7 @@ function InputField(props) {
     <div style={{margin: `${props.margin}`}}  className="inputContainer">
       {
         props.boldLabel === true &&
-          <h3 style={{textAlign: `${props.labelInline}`}} htmlFor={props.name} className="label">{props.label}</h3>
+          <h3 style={{textAlign: `${props.labelInline}`, width: `${props.labelWidth}`}} htmlFor={props.name} className="label">{props.label}</h3>
       }
       {
         (props.boldLabel === false || props.boldLabel === undefined) &&

@@ -1,48 +1,26 @@
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import Button from '../components/Button'
-import html2canvas from 'html2canvas'
-import jsPDF from 'jspdf'
+import html2pdf from 'html2pdf.js'
 
 function ArmyView() {
   const [armyList, setArmyList] = useState([])
   const [armyName, setArmyName] = useState("")
   const [totalPoints, setTotalPoints] = useState("")
 
-const saveAsPdf = () => {
-  const input = document.getElementById('armyDiv')
+  const saveAsPdf = () => {
+    const element = document.getElementById('armyDiv')
 
-  html2canvas(input, { scale: 2 }).then((canvas) => {
-    const imgData = canvas.toDataURL('image/png')
-
-    const pdf = new jsPDF('p', 'mm', 'a4')
-    const pdfWidth = pdf.internal.pageSize.getWidth()
-    const pdfHeight = pdf.internal.pageSize.getHeight()
-
-    const canvasWidth = canvas.width
-    const canvasHeight = canvas.height
-
-    const imgProps = {
-      width: pdfWidth,
-      height: (canvasHeight * pdfWidth) / canvasWidth,
-    }
-
-    let heightLeft = imgProps.height
-    let position = 0
-
-    pdf.addImage(imgData, 'PNG', 0, position, imgProps.width, imgProps.height)
-    heightLeft -= pdfHeight
-
-    while (heightLeft > 0) {
-      position = heightLeft - imgProps.height
-      pdf.addPage()
-      pdf.addImage(imgData, 'PNG', 0, position, imgProps.width, imgProps.height)
-      heightLeft -= pdfHeight
-    }
-
-    pdf.save(`${armyName}.pdf`)
-  })
-}
-
+    html2pdf()
+      .set({
+        margin: 10,
+        filename: `${armyName}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      })
+      .from(element)
+      .save()
+  }
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search)
@@ -73,19 +51,19 @@ const saveAsPdf = () => {
 
   return (
     <>
-      <div style={{margin: "20px"}} id="armyDiv">
+      <div style={{marginLeft: "40px"}} id="armyDiv">
         <br />
-        <h3 style={{margin: "10px"}}>{armyName}</h3>
+        <h3 style={{margin: "20px"}}>{armyName}</h3>
         {
           armyList.map((el, index) => {
-            return <div key={index} style={{margin: "10px"}}>
+            return <div key={index} style={{margin: "20px"}}>
               <span>{el.displayName}</span>
             </div>
           })
         }
-        <h3 style={{margin: "10px"}}>Total points: {totalPoints}</h3>
+        <h3 style={{margin: "20px"}}>Total points: {totalPoints}</h3>
       </div>
-      <Button margin="0px 0px 0px 27px" width="120px" label="Download as pdf" className="greenAffirmationButton" onClick={() => saveAsPdf()} />
+      <Button margin="0px 0px 40px 60px" width="120px" label="Download as pdf" className="greenAffirmationButton" onClick={() => saveAsPdf()} />
     </>
   )
 }
