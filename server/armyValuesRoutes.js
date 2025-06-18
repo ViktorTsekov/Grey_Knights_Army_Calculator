@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const armyValuesViewHelper = require('./helpers/armyValuesView')
-const statusCodes = require('../client/src/static_files/statusCodes')
+const statusCodes = require('serverStatusCodes')
 
 module.exports = (app) => {
   app.get(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/armyValues`, (req, res) => {

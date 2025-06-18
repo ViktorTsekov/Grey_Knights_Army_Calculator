@@ -32,7 +32,7 @@ module.exports = {
     connection: {
 	      host: '127.0.0.1',
         port: 3306,
-        user: process.env.PRODUCTION_DATABASE_USER,
+        user: 'doadmin',
         password: process.env.PRODUCTION_DATABASE_PASSWORD,
         database: 'grey_knights_army_calculator'
     },
