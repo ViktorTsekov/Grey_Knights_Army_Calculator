@@ -24,6 +24,15 @@ jobs:
           npm install
           npm run build
 
+      - name: Delete old deploy version on Droplet
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            sudo rm -rf ${{ secrets.SERVER_DEPLOY_PATH }}/client
+
       - name: Deploy to Droplet via SCP
         uses: appleboy/scp-action@v0.1.4
         with:
