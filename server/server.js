@@ -64,6 +64,7 @@ require('./viewArmyRoutes.js')(app)
 app.post(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/login`,
   passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
   function(req, res) {
+    console.log("server log")
     res.json({isAuthenticated: req.isAuthenticated()})
 })
 
