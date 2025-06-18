@@ -4,7 +4,7 @@
   margin: 10px;
 }
 
-.name {
+.unitName {
   width: 300px;
   display: inline-block;
 }
@@ -26,4 +26,36 @@
 
 .statusMessage {
   color: $greenAffirmation;
+}
+
+@media (max-width: 950px) {
+  .createNewArmyContainer {
+    width: fit-content;
+    border: 2px black solid;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .unitName {
+    width: 200px;
+    margin: 10px;
+  }
+
+  .costPerUnit {
+    margin: 10px;
+  }
+  
+  .squadSize {
+    margin: 10px;
+  }
+
+  .statusMessage {
+    margin: 10px;
+  }
+
+  .listName {
+    width: 200px;
+    margin: 10px;
+  }
 }

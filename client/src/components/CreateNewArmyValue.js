@@ -37,7 +37,7 @@ function CreateNewArmyValue(props) {
 
   return (
     <div className="createNewArmyContainer">
-      <span className="name">{props.value.name}</span>
+      <span className="unitName">{props.value.name}</span>
       <span className="costPerUnit">{`(${props.value.costPerUnit} points per unit)`}</span>
       <span className="squadSize">{"squad size:"} <SelectButton onChange={(e) => setSquadSize(e)} name="squad_size" options={props.value.unitSize.split("-")} /> </span>
       <Button label="Add" className="greenAffirmationButton" onClick={() => clickEvent()} />

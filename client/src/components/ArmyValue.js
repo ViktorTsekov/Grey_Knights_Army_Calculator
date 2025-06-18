@@ -16,7 +16,7 @@ function ArmyValue(props) {
       <span className="inlineInformation">{props.value.name}</span>
       <span className="inlineInformation">class: {props.value.class}</span>
       <span className="inlineInformation">squad size: {props.value.unitSize}</span>
-      <span className="costPerUnit">{"cost per unit:"} <input value={unitCost} onChange={(e) => verifyUnitCost(e.target.value)} type="number" className="costPerUnitInput" /></span>
+      <span className="cost">{"cost per unit:"} <input value={unitCost} onChange={(e) => verifyUnitCost(e.target.value)} type="number" className="costInput" /></span>
     </div>
   )
 }

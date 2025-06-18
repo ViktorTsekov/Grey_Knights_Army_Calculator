@@ -11,18 +11,19 @@
   display: inline-block;
 }
 
-.costPerUnit {
-  width: 300px;
+.cost {
+  width: 200px;
   display: inline-block;
 }
 
-.costPerUnitInput {
+.costInput {
   width: 50px;
   margin-right: 10px;
 }
 
 @media (max-width: 768px) {
   .armyValueContainer {
+    width: fit-content;
     display: flex;
     flex-direction: column;
     border: 2px black solid;

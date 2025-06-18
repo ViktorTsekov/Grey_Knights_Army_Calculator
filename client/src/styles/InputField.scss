@@ -26,10 +26,15 @@
 @media (max-width: 768px) {
   .label {
     text-align: left;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 
   .requiredMessage {
     display: none;
+  }
+
+  .inputContainer {
+    margin: 0;
+    margin-bottom: 10px;
   }
 }

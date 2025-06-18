@@ -216,7 +216,7 @@ function CreateNewArmy(props) {
 
       <h3 className="createNewArmyStatusMessage">{statusMessage}</h3>
 
-      <InputField margin="10px" labelInline="left" boldLabel={true} name="army-name" label="Army name:" type="text" isRequired={false} onChange={(val) => setArmyName(val)} value={armyName} />
+      <InputField labelInline="left" boldLabel={true} name="army-name" label="Army name:" type="text" isRequired={false} onChange={(val) => setArmyName(val)} value={armyName} />
       <h3 className="armyName">{armyName}</h3>
       {
         armyList.map((obj, index) => {
@@ -225,8 +225,8 @@ function CreateNewArmy(props) {
       }
       <h3 className="createNewArmyTotalPoints">Total points: {totalPoints}</h3>
 
-      <Button label="Save army" className="greenAffirmationButton" onClick={() => saveArmy()} />
-      <Button label="Clear list" className="alertButton" onClick={() => clearList()}/>
+      <Button margin="10px 10px 0px 0px" label="Save army" className="greenAffirmationButton" onClick={() => saveArmy()} />
+      <Button margin="10px 10px 0px 0px" label="Clear list" className="alertButton" onClick={() => clearList()}/>
     </div>
   )
 }

@@ -16,3 +16,17 @@
 .armyName {
   margin: 10px;
 }
+
+@media (max-width: 950px) {
+  .createNewArmySeparator {
+    display: none;
+  }
+
+  .armyName {
+    margin: 0;
+  }
+
+  .createNewArmyTotalPoints {
+    margin: 0;
+  }
+}
