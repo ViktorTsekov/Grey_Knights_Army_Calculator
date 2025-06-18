@@ -61,13 +61,13 @@ require('./wargearValuesRoutes')(app)
 require('./createNewArmyRoutes')(app)
 require('./viewArmyRoutes.js')(app)
 
+/*
 app.post(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/login`,
   passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
   function(req, res) {
-    console.log("server log")
     res.json({isAuthenticated: req.isAuthenticated()})
 })
-
+*/
 app.get(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/logout`, (req, res, next) => {
   req.logout(function (err) {
     if (err) { 
