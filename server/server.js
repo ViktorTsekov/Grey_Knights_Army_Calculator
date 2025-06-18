@@ -64,8 +64,8 @@ require('./viewArmyRoutes.js')(app)
 app.post(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/login`,
   passport.authenticate('local', { failureRedirect: '/login', failureMessage: true }),
   function(req, res) {
+    console.log(`User ${req.body.name} logged in`)
     res.json({isAuthenticated: req.isAuthenticated()})
-    console.log("console log")
 })
 
 app.get(`${process.env.NODE_ENV === 'development' ? '/api' : ''}/logout`, (req, res, next) => {
