@@ -19,7 +19,6 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies & build
-        working-directory: ./client
         run: |
           npm install
           npm run build
@@ -27,8 +26,9 @@ jobs:
       - name: Deploy to Droplet via SCP
         uses: appleboy/scp-action@v0.1.4
         with:
+          debug: true
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "client/build/"
+          source: "build"
           target: ${{ secrets.SERVER_DEPLOY_PATH }}
